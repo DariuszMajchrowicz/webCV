@@ -1,0 +1,45 @@
+$icon-font-path: "../fonts/";
+// bower:scss
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700,900&subset=latin-ext");
+
+// $mainColor: #228a7b;
+$mainColor: #10bfc5;
+
+.section-desc {
+  width: 110%;
+  height: 100%;
+  overflow: hidden;
+  color: rgba(0, 0, 0, 0.1);
+  font-family: "Lato", sans-serif;
+  font-weight: 900;
+  font-size: 70vh;
+  left: -10%;
+  letter-spacing: 0.05em;
+  margin-right: 0.05em;
+  position: absolute;
+  top: 50%;
+  transform: translate(0%, -50%);
+  pointer-events: none;
+}
+
+@import "trigonometry.scss";
+@import "_wheel.scss";
+@import "_skills.scss";
+
+
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background: #fff; 
+  border-radius: 5px;
+}
+
+body::-webkit-scrollbar-track-piece{
+    background: $mainColor;
+}

@@ -1,0 +1,116 @@
+// top
+
+
+
+#wheel{
+
+  .section-desc {
+    font-size: 63vh;
+    top: 55%;
+  }
+  $mainCircleSize: 80vh;
+  $innerCircleSize: $mainCircleSize * 0.4;
+  $numbersOfWheelCircles : 6;
+  $wheelCircleSize: ($mainCircleSize - $innerCircleSize) / 2;
+
+
+  @mixin wheelCircle($numb, $color) {
+    $angle: ($numb - 2)  * (360deg / $numbersOfWheelCircles);
+    $r : $mainCircleSize /2;
+    $rI : $wheelCircleSize/2;
+    left: (sin($angle) * $r) + $r - $rI - $rI * sin($angle);
+    top: (cos($angle) * $r) + $r - $rI - $rI * cos($angle);
+    background-color: $color;
+  }
+
+  @mixin iconCorrection($numb){
+    $angle: 330deg - ($numb * 360deg / $numbersOfWheelCircles); 
+    transform: rotate($angle);
+  }
+  @mixin wheelBox($numb) {
+    $angle: ($numb - 2)  * (360deg / $numbersOfWheelCircles);
+    $r : $mainCircleSize /2;
+    $rI : $wheelCircleSize/2;
+    left: (sin($angle) * $r) + $r - $rI - $rI * sin($angle);
+    top: (cos($angle) * $r) + $r - $rI - $rI * cos($angle);
+  }
+
+  background: $mainColor;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  .main-circle{
+    width: $mainCircleSize;
+    height: $mainCircleSize;
+    position: relative;
+    background: #ffffff;
+    border-radius: 50%;
+  }
+  .inner-circle{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: $innerCircleSize;
+    height: $innerCircleSize;
+    background: rgba(0, 0, 0, 0.32);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+  .box {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: #bada55;
+  }
+  .box1 { @include wheelBox(0.5);}
+  .box2 { @include wheelBox(1.5);}
+  .outer-circle{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition-duration: 3s;
+    // &:hover{
+    //   transform: rotate(720deg)
+    // }
+    .wheel-circle{
+      position: absolute;
+      width: $wheelCircleSize;
+      height: $wheelCircleSize;
+      border-radius: 50%;
+      transform: scale(0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      i {
+        color: #fff;
+        font-size: 10vh;
+        transform: rotate(30deg);
+      }
+    }
+
+    .circle1 { @include wheelCircle(0.5, rgba(0, 0, 0, 0.32)); }
+    .circle2 { @include wheelCircle(1.5, rgba(0, 0, 0, 0.30)); }
+    .circle3 { @include wheelCircle(2.5, rgba(0, 0, 0, 0.35)); }
+    .circle4 { @include wheelCircle(3.5, rgba(0, 0, 0, 0.25)); }
+    .circle5 { @include wheelCircle(4.5, rgba(0, 0, 0, 0.27)); }
+    .circle6 { @include wheelCircle(5.5, rgba(0, 0, 0, 0.40)); }
+
+    .circle1 i {@include iconCorrection(1)};
+    .circle2 i {@include iconCorrection(2)};
+    .circle3 i {@include iconCorrection(3)};
+    .circle4 i {@include iconCorrection(4)};
+    .circle5 i {@include iconCorrection(5)};
+    .circle6 i {@include iconCorrection(6)};
+
+
+  }
+}
