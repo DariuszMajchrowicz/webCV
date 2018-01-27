@@ -3,16 +3,31 @@
 
 
 #wheel{
-
   .section-desc {
     font-size: 63vh;
     top: 55%;
   }
+  $easeTime : 0.35s;
+
   $mainCircleSize: 80vh;
   $innerCircleSize: $mainCircleSize * 0.4;
   $numbersOfWheelCircles : 6;
   $wheelCircleSize: ($mainCircleSize - $innerCircleSize) / 2;
-
+  
+  background: $mainColor;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  .flex-container{
+    position: relative;
+    width: 2* $mainCircleSize;
+    height: $mainCircleSize;
+  }
 
   @mixin wheelCircle($numb, $color) {
     $angle: ($numb - 2)  * (360deg / $numbersOfWheelCircles);
@@ -27,29 +42,54 @@
     $angle: 330deg - ($numb * 360deg / $numbersOfWheelCircles); 
     transform: rotate($angle);
   }
-  @mixin wheelBox($numb) {
-    $angle: ($numb - 2)  * (360deg / $numbersOfWheelCircles);
-    $r : $mainCircleSize /2;
-    $rI : $wheelCircleSize/2;
-    left: (sin($angle) * $r) + $r - $rI - $rI * sin($angle);
-    top: (cos($angle) * $r) + $r - $rI - $rI * cos($angle);
-  }
 
-  background: $mainColor;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  .box-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $mainCircleSize * 1.5;
+    height: $mainCircleSize;
+    overflow: hidden;
+    // background: rgba(240, 20, 20, 0.6);
+    .box {
+      position: absolute;
+      width: $mainCircleSize * 1.5;
+      height: $mainCircleSize;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.75);
+      border-radius: 20vh;
+      transition-duration: $easeTime;
+      transform: translateX(100%);
+    }
+    .inner-box{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: $mainCircleSize;
+      height: $mainCircleSize;
+      text-align: center;
+      color: #fff;
+      padding: 10px;
+      transition-duration: $easeTime;
+      transition-delay: $easeTime * 0;
+      transform: translateY(-100%);
+    }
+    &:hover .box {transform: translateX(0)}
+    &:hover .inner-box {
+      transition-delay: $easeTime * 0.25;
+      transform: translateY(0);
+    }
+  }
   .main-circle{
+    position: absolute;
     width: $mainCircleSize;
     height: $mainCircleSize;
-    position: relative;
+    top: 0;
+    left: auto;
+    right: 0;
     background: #ffffff;
     border-radius: 50%;
+    box-shadow: 0 0 10vh;
   }
   .inner-circle{
     position: absolute;
@@ -65,22 +105,12 @@
     justify-content: center;
     color: #fff;
   }
-  .box {
-    position: absolute;
-    width: 250px;
-    height: 250px;
-    background: #bada55;
-  }
-  .box1 { @include wheelBox(0.5);}
-  .box2 { @include wheelBox(1.5);}
   .outer-circle{
     position: absolute;
     width: 100%;
     height: 100%;
     transition-duration: 3s;
-    // &:hover{
-    //   transform: rotate(720deg)
-    // }
+    // &:hover{ transform: rotate(720deg) }
     .wheel-circle{
       position: absolute;
       width: $wheelCircleSize;

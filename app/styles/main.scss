@@ -9,6 +9,8 @@ $icon-font-path: "../fonts/";
 $mainColor: #10bfc5;
 
 .section-desc {
+  position: absolute;
+  top: 50%;
   width: 110%;
   height: 100%;
   overflow: hidden;
@@ -19,8 +21,6 @@ $mainColor: #10bfc5;
   left: -10%;
   letter-spacing: 0.05em;
   margin-right: 0.05em;
-  position: absolute;
-  top: 50%;
   transform: translate(0%, -50%);
   pointer-events: none;
 }
