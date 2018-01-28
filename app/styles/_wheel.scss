@@ -109,7 +109,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    transition-duration: 3s;
+    // transition-duration: 3s;
     // &:hover{ transform: rotate(720deg) }
     .wheel-circle{
       position: absolute;
@@ -120,7 +120,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      i {
+      cursor: pointer;
+      i, p {
         color: #fff;
         font-size: 10vh;
         transform: rotate(30deg);
@@ -134,12 +135,12 @@
     .circle5 { @include wheelCircle(4.5, rgba(0, 0, 0, 0.27)); }
     .circle6 { @include wheelCircle(5.5, rgba(0, 0, 0, 0.40)); }
 
-    .circle1 i {@include iconCorrection(1)};
-    .circle2 i {@include iconCorrection(2)};
-    .circle3 i {@include iconCorrection(3)};
-    .circle4 i {@include iconCorrection(4)};
-    .circle5 i {@include iconCorrection(5)};
-    .circle6 i {@include iconCorrection(6)};
+    .circle1 i, .circle1 p {@include iconCorrection(1)};
+    .circle2 i, .circle2 p {@include iconCorrection(2)};
+    .circle3 i, .circle3 p {@include iconCorrection(3)};
+    .circle4 i, .circle4 p {@include iconCorrection(4)};
+    .circle5 i, .circle5 p {@include iconCorrection(5)};
+    .circle6 i, .circle6 p {@include iconCorrection(6)};
 
 
   }
