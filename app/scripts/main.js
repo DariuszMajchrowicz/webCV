@@ -33,19 +33,23 @@ class Wheel {
     if ( !this.canSpin ) { return; }
     this.canSpin = false;
 
+    let spinTime = (_circleNumber - this.currentCircle);
     this.currentAngle = 360 * _circleNumber / this.numberOfCircles;
+    
     if ( this.currentCircle >= _circleNumber ) {
-      TweenMax.to(this.outerCircle, 1, { rotation: this.currentAngle + 360, onComplete: () =>{
+      spinTime = -spinTime;
+      TweenMax.to(this.outerCircle, 0.5, { rotation: this.currentAngle + 360, onComplete: () =>{
         TweenMax.set(this.outerCircle, { rotation: this.currentAngle })
         this.canSpin = true;
       }});
     }
     else{
-      TweenMax.to(this.outerCircle, 1, { rotation: this.currentAngle, onComplete: ()=>{
+      TweenMax.to(this.outerCircle, 0.5, { rotation: this.currentAngle, onComplete: ()=>{
         this.canSpin = true;
       }})
     }
     
+    console.log('%c SpinTime: ' + spinTime, 'color: #42dcf4');
     this.currentCircle = _circleNumber;
   }
   init() {

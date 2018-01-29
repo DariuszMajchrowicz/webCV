@@ -54,27 +54,35 @@
     .box {
       position: absolute;
       width: $mainCircleSize * 1.5;
-      height: $mainCircleSize;
+      height: $mainCircleSize * 0.9;
+      top: $mainCircleSize * 0.05;
       overflow: hidden;
-      background: rgba(0, 0, 0, 0.75);
-      border-radius: 20vh;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 20px;
       transition-duration: $easeTime;
       transform: translateX(100%);
+      box-shadow: 0px 0px 30px 0px;
     }
     .inner-box{
       position: absolute;
       left: 0;
       top: 0;
-      width: $mainCircleSize;
-      height: $mainCircleSize;
-      text-align: center;
-      color: #fff;
+      width: 60%;
+      height: 100%;
       padding: 10px;
       transition-duration: $easeTime;
       transition-delay: $easeTime * 0;
       transform: translateY(-100%);
+      h1 {
+        text-align: center;
+      }
+      p {
+        padding: 10px;
+        font-size: 22px;
+        text-align: left;
+      }
     }
-    &:hover .box {transform: translateX(0)}
+    &:hover .box {transform: translateX(5%)}
     &:hover .inner-box {
       transition-delay: $easeTime * 0.25;
       transform: translateY(0);
