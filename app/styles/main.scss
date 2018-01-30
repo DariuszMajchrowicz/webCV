@@ -27,6 +27,7 @@ body {
   margin-right: 0.05em;
   transform: translate(0%, -50%);
   pointer-events: none;
+  user-select: none;
 }
 
 @import "trigonometry.scss";
