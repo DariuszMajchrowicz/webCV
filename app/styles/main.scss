@@ -7,12 +7,15 @@ $icon-font-path: "../fonts/";
 
 // $mainColor: #228a7b;
 // $mainColor: #10bfc5;
-$mainColor: #c2c2c2;
+$mainColor: #dddddd;
 
 body {
   font-family: "Lato", sans-serif;  
+  background: $mainColor;
 }
-
+section{
+  margin-bottom: 100px;
+}
 .section-desc {
   position: absolute;
   top: 50%;
@@ -31,8 +34,10 @@ body {
 }
 
 @import "trigonometry.scss";
-@import "_wheel.scss";
+
 @import "_skills.scss";
+@import "_boxes.scss";
+@import "_wheel.scss";
 
 
 

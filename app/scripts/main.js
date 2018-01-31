@@ -4,7 +4,10 @@ document.onreadystatechange = () => {
   if (document.readyState === 'complete') {
     console.log('%c Document is ready', 'color: #42dcf4');
     let wheel = new Wheel();
-    wheel.init();
+    let boxes = new Boxes();
+
+    // wheel.init();
+    boxes.init();
   }
 };
 
@@ -161,5 +164,70 @@ class Wheel {
   init() {
     this.addEventListeners();
     this.circleRotate(0);
+  }
+}
+
+
+// ======= Boxes.JS =======
+
+class Boxes {
+  constructor() {
+
+    // == Setings ==
+    this.animationTime = 0.5;
+
+    // == Variables ==
+    this.openedBoxArray = [];
+
+    // == Elements ==
+    this.boxes = document.querySelectorAll('#boxes .box');
+
+    this.leftSideOfBox = document.querySelectorAll('#boxes .box .translation-box-left');
+    this.rightSideOfBox = document.querySelectorAll('#boxes .box .translation-box-right');
+
+    this.leftText = document.querySelectorAll('#boxes .box .translation-box-left .box-title' );
+    this.righText =  document.querySelectorAll('#boxes .box .translation-box-right .box-title');
+
+    this.mainTitles = document.querySelectorAll('#boxes .box .main-title');
+  }
+  addEventListeners() {
+    for (let i = 0; i < this.boxes.length; i++) {
+      this.boxes[i].addEventListener('mouseover', () => { this.peekBox(i); });
+      this.boxes[i].addEventListener('mousedown', () => { this.openBox(i); });
+      this.boxes[i].addEventListener('mouseout', () => { this.closeBox(i); });
+    }
+  }
+
+  openBox(_boxNumber){
+    TweenMax.to(this.leftSideOfBox[_boxNumber], this.animationTime, { x: '-75%' });
+    TweenMax.to(this.rightSideOfBox[_boxNumber], this.animationTime, { x: '75%' });
+
+    TweenMax.set([this.leftText[_boxNumber], this.righText[_boxNumber]], { opacity: 1 });
+    TweenMax.set(this.mainTitles[_boxNumber],  { opacity: 0 });
+
+    this.openedBoxArray[_boxNumber] = true;
+  }
+
+  peekBox(_boxNumber) {
+    if (this.openedBoxArray[_boxNumber]) { return; }
+    TweenMax.to(this.leftSideOfBox[_boxNumber], this.animationTime, { x: '-5%' });
+    TweenMax.to(this.rightSideOfBox[_boxNumber], this.animationTime, { x: '5%' });
+
+    TweenMax.set([this.leftText[_boxNumber], this.righText[_boxNumber]], { opacity: 1 });
+    TweenMax.set(this.mainTitles[_boxNumber], { opacity: 0 });
+  }
+
+  closeBox(_boxNumber) {
+    if ( this.openedBoxArray[_boxNumber] ) { return; }
+    TweenMax.to([this.leftSideOfBox[_boxNumber], this.rightSideOfBox[_boxNumber]], this.animationTime, { x: '0%', onComplete: ()=>{
+      TweenMax.set([this.leftText[_boxNumber], this.righText[_boxNumber]], { opacity: 0 });
+      TweenMax.set(this.mainTitles[_boxNumber], { opacity: 1 });
+    } });
+
+  }
+
+
+  init() {
+    this.addEventListeners();
   }
 }
