@@ -25,7 +25,7 @@ class Wheel {
     this.canSpin = true;
     this.currentCircle = 0;
     this.currentAngle = 0;
-    
+
     // == Elements ==
     this.smallCirles = document.querySelectorAll('.wheel-circle');
     this.innerCirle = document.querySelector('.inner-circle');
@@ -51,46 +51,47 @@ class Wheel {
     }
 
     this.innerCirle.addEventListener('mousedown', () => { this.stopStart(); });
-    
+
   }
 
   circleRotate(_circleNumber) {
-    if ( !this.canSpin ) { return; }
+    if (!this.canSpin) { return; }
     this.canSpin = false;
     clearTimeout(this.rotationTimeout);
     cancelAnimationFrame(this.rAF);
 
     this.currentAngle = 360 * _circleNumber / this.numberOfCircles;
-    
+
     this.moveCircle(_circleNumber);
     this.showBox(_circleNumber);
     this.drawCanvasCounter();
-    
+
     this.currentCircle = _circleNumber;
-    if ( this.isStoped ) { return; }
+    if (this.isStoped) { return; }
     this.rotationTimeoutMethod();
   }
-  
-  rotationTimeoutMethod(){
-    this.rotationTimeout = setTimeout(() => { 
-      let nextCircle = ( this.currentCircle == (this.numberOfCircles - 1) ? -this.numberOfCircles + 1 : 1);
-      this.circleRotate(this.currentCircle + nextCircle); 
+
+  rotationTimeoutMethod() {
+    this.rotationTimeout = setTimeout(() => {
+      let nextCircle = (this.currentCircle == (this.numberOfCircles - 1) ? -this.numberOfCircles + 1 : 1);
+      this.circleRotate(this.currentCircle + nextCircle);
     }, this.timeoutTime);
   }
 
-  showBox(_newBox){
+  showBox(_newBox) {
     // out
     TweenMax.to(this.boxes[this.currentCircle], this.animationTime / 2, { ease: Power0.easeNone, x: '100%' });
-    
+
     // in
     TweenMax.to(this.boxes[_newBox], this.animationTime / 2, { ease: Power0.easeNone, x: '5%', delay: 0.35 });
-    TweenMax.fromTo(this.innerBoxes[_newBox], this.animationTime/ 2, { y: '-100%' }, { y: '0%', delay: this.animationTime });
+    TweenMax.fromTo(this.innerBoxes[_newBox], this.animationTime / 2, { y: '-100%' }, { y: '0%', delay: this.animationTime });
   }
 
-  moveCircle(_circleNumber){
+  moveCircle(_circleNumber) {
     if (this.currentCircle >= _circleNumber) {
       TweenMax.to(this.outerCircle, this.animationTime, {
-        rotation: this.currentAngle + 360, onComplete: () => {
+        rotation: this.currentAngle + 360, 
+        onComplete: () => {
           TweenMax.set(this.outerCircle, { rotation: this.currentAngle })
           this.canSpin = true;
         }
@@ -98,48 +99,49 @@ class Wheel {
     }
     else {
       TweenMax.to(this.outerCircle, this.animationTime, {
-        rotation: this.currentAngle, onComplete: () => {
+        rotation: this.currentAngle, 
+        onComplete: () => {
           this.canSpin = true;
         }
       });
     }
   }
 
-  drawCanvasCounter(){
+  drawCanvasCounter() {
     this.ctx.clearRect(0, 0, 240, 240);
     this.startTime = Date.now();
     if (this.isStoped) { return; }
-    this.rAF = requestAnimationFrame(()=>{ this.draw();});
+    this.rAF = requestAnimationFrame(() => { this.draw(); });
   }
-  
-  draw(){
+
+  draw() {
 
     this.ctx.clearRect(0, 0, 240, 240);
     this.ctx.strokeStyle = '#fff';
     this.ctx.lineWidth = 7;
 
     this.ctx.beginPath();
-    this.ctx.arc(120, 120, 100, -0.5 * Math.PI, ( (this.step + 0.005) * 2 + -0.5 ) * Math.PI);
+    this.ctx.arc(120, 120, 100, -0.5 * Math.PI, ((this.step + 0.005) * 2 + -0.5) * Math.PI);
     this.ctx.stroke();
 
     this.step = (Date.now() - this.startTime) / this.timeoutTime;
-    if (this.step >= 1.01) { 
+    if (this.step >= 1.01) {
       cancelAnimationFrame(this.rAF);
-      return; 
+      return;
     }
 
     this.rAF = requestAnimationFrame(() => { this.draw(); });
   }
 
-  stopStart(){
-    if ( this.isStoped ){ 
-      this.startWheel(); 
+  stopStart() {
+    if (this.isStoped) {
+      this.startWheel();
     }
     else {
-      this.stopWheel(); 
+      this.stopWheel();
     }
   }
-  
+
   startWheel() {
     TweenMax.to(this.innerCirleIcons[0], 0.35, { opacity: 1 });
     TweenMax.to(this.innerCirleIcons[1], 0.35, { opacity: 0 });
@@ -149,7 +151,7 @@ class Wheel {
     this.isStoped = false;
     this.circleRotate(this.currentCircle);
   }
-  
+
   stopWheel() {
     TweenMax.to(this.innerCirleIcons[0], 0.35, { opacity: 0 });
     TweenMax.to(this.innerCirleIcons[1], 0.35, { opacity: 1 });
@@ -185,25 +187,27 @@ class Boxes {
     this.leftSideOfBox = document.querySelectorAll('#boxes .box .translation-box-left');
     this.rightSideOfBox = document.querySelectorAll('#boxes .box .translation-box-right');
 
-    this.leftText = document.querySelectorAll('#boxes .box .translation-box-left .box-title' );
-    this.righText =  document.querySelectorAll('#boxes .box .translation-box-right .box-title');
+    this.leftText = document.querySelectorAll('#boxes .box .translation-box-left .box-title');
+    this.righText = document.querySelectorAll('#boxes .box .translation-box-right .box-title');
 
     this.mainTitles = document.querySelectorAll('#boxes .box .main-title');
+    this.closeBtns = document.querySelectorAll('#boxes .box .close-box-btn');
   }
   addEventListeners() {
     for (let i = 0; i < this.boxes.length; i++) {
       this.boxes[i].addEventListener('mouseover', () => { this.peekBox(i); });
       this.boxes[i].addEventListener('mousedown', () => { this.openBox(i); });
       this.boxes[i].addEventListener('mouseout', () => { this.closeBox(i); });
+      // this.closeBtns[i].addEventListener('mousedown', () => { this.closeBox(i); });
     }
   }
 
-  openBox(_boxNumber){
+  openBox(_boxNumber) {
     TweenMax.to(this.leftSideOfBox[_boxNumber], this.animationTime, { x: '-75%' });
     TweenMax.to(this.rightSideOfBox[_boxNumber], this.animationTime, { x: '75%' });
 
     TweenMax.set([this.leftText[_boxNumber], this.righText[_boxNumber]], { opacity: 1 });
-    TweenMax.set(this.mainTitles[_boxNumber],  { opacity: 0 });
+    TweenMax.set(this.mainTitles[_boxNumber], { opacity: 0 });
 
     this.openedBoxArray[_boxNumber] = true;
   }
@@ -218,11 +222,14 @@ class Boxes {
   }
 
   closeBox(_boxNumber) {
-    if ( this.openedBoxArray[_boxNumber] ) { return; }
-    TweenMax.to([this.leftSideOfBox[_boxNumber], this.rightSideOfBox[_boxNumber]], this.animationTime, { x: '0%', onComplete: ()=>{
-      TweenMax.set([this.leftText[_boxNumber], this.righText[_boxNumber]], { opacity: 0 });
-      TweenMax.set(this.mainTitles[_boxNumber], { opacity: 1 });
-    } });
+    if (this.openedBoxArray[_boxNumber]) { return; }
+    TweenMax.to([this.leftSideOfBox[_boxNumber], this.rightSideOfBox[_boxNumber]], this.animationTime, {
+      x: '0%', 
+      onComplete: () => {
+        TweenMax.set([this.leftText[_boxNumber], this.righText[_boxNumber]], { opacity: 0 });
+        TweenMax.set(this.mainTitles[_boxNumber], { opacity: 1 });
+      }
+    });
 
   }
 
