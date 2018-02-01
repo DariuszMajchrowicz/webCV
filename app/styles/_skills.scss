@@ -6,7 +6,6 @@
   overflow-x: hidden;
 
   $numberOfBoxesInRow: 5;
-  $transitionDuration: 0.3s;
 
   .flex-box {
     position: absolute;
@@ -23,28 +22,19 @@
     align-items: flex-end; 
     .desc-box { 
       top: 0;
-      // transform: translate(-50%, -120%); 
       transform: translate(-50%, -50%); 
     }
-    .skill-box:hover .desc-box {
-      transform: translate(-50%, -120%); 
-      opacity: 1;
-    };
   }
   .flex-box-bottom{ 
     top: 50%;
     align-items: flex-start; 
     .desc-box {
         bottom: 0;
-        // transform: translate(-50%, 120%); 
         transform: translate(-50%, 50%); 
       }
-      .skill-box:hover .desc-box {
-        transform: translate(-50%, 120%); 
-        opacity: 1; 
-      };
   }
   .desc-box {
+    pointer-events: none;
     position: absolute;
     left: 50%;
     width: 250px;
@@ -53,7 +43,6 @@
     border-radius: 5px;
     box-shadow: 0px 0px 30px 0px;
     opacity: 0;
-    transition-duration: 2 * $transitionDuration;
     color: black;
     padding: 10px;
     .desc-header{
@@ -77,6 +66,7 @@
       height: 120px;
       border-radius: 50%;
       background: #fff;
+      cursor: pointer;
       .skill-logo {
         position: absolute;
         width: 90%;
@@ -84,15 +74,33 @@
         left: 5%;
         top: 5%;
         opacity: 0.6;
-        transition-duration: $transitionDuration;
         transform: scale(0.8);
         filter: grayscale(100%);
       }
-      &:hover .skill-logo {
-        transform: scale(1);
-        opacity: 1;
-        filter: none;
-      }
+    }
+  }
+  .show-all-btn{
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    width: 125px;
+    height: 50px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px #000;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition-duration: 0.35s;
+    &:hover{
+      background: #fff;
+      color: #000;
     }
   }
 }

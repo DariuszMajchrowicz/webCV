@@ -6,6 +6,7 @@ const del = require('del');
 const wiredep = require('wiredep').stream;
 const runSequence = require('run-sequence');
 const babel = require('gulp-babel');
+const concat = require('gulp-concat');
 const nunjucksRender = require('gulp-nunjucks-render')
 
 const $ = gulpLoadPlugins();
@@ -43,6 +44,7 @@ gulp.task('styles', () => {
 
 gulp.task('scripts', () => {
   return gulp.src('app/scripts/**/*.js')
+    .pipe(concat('main.js'))
     .pipe($.plumber())
     .pipe($.if(dev, $.sourcemaps.init()))
     .pipe($.babel())
