@@ -29,6 +29,7 @@ gulp.task('nunjucks', function () {
 
 gulp.task('styles', () => {
   return gulp.src('app/styles/*.scss')
+    // .pipe(concat('styles.scss'))
     .pipe($.plumber())
     .pipe($.if(dev, $.sourcemaps.init()))
     .pipe($.sass.sync({
@@ -112,7 +113,8 @@ gulp.task('extras', () => {
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 gulp.task('serve', () => {
-  runSequence(['clean', 'wiredep'], [ 'nunjucks', 'styles', 'scripts', 'fonts'], () => {
+  runSequence(['clean', 'wiredep'], ['nunjucks', 'styles', 'scripts', 'fonts'], () => {
+  // runSequence(['clean'], [ 'nunjucks', 'styles', 'scripts', 'fonts'], () => {
     browserSync.init({
       notify: false,
       port: 9000,

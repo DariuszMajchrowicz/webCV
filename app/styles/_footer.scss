@@ -1,0 +1,74 @@
+#footer {
+  $footerColor: #333;
+
+  position: relative;
+  margin: 0;
+  padding: 100px 0 15px 0;
+  width: 100%;
+  overflow: hidden;
+
+  background:  $footerColor;
+  color: #fff;
+  box-shadow: inset 0px 15px 30px 0px rgba(0, 0, 0, 0.31);
+
+  h3, h4{
+      margin-top: 50px;
+      text-align: center;
+      text-shadow: 0px 0px 10px rgb(0, 0, 0);
+  }
+  .link-container{
+      padding-bottom: 25px;
+      text-align: center;
+      svg {
+          box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.33);
+          margin: 20px;
+          width: 50px;
+          height: auto;
+          filter: grayscale(100%);
+          opacity: 0.7;
+    
+          transition-duration: 0.35s;
+    
+          &:hover{
+              opacity: 1;
+          }
+      }
+  }
+  .circle-ornament{
+      $size: 200px;
+      $fcSize: $size * 0.2;
+      $animationTime: 6s;
+
+      position: absolute;
+      top: 0%;
+      left: 50%;
+      width: $size;
+      height: $size;
+      border-radius: 50%;
+      transform: translate(-50%, -70%);
+      background: $mainColor;
+      box-shadow: 0px 15px 30px 0px rgba(0, 0, 0, 0.31);
+      .floating-circle{
+        position: absolute;
+        top: - $fcSize / 2;
+        left: calc(50% - #{$fcSize / 2});
+        width: $fcSize;
+        height: $fcSize;
+        border-radius: 50%;
+        transform-origin: 0.5*$fcSize 0.5*($fcSize + $size);
+
+        background: $footerColor;
+
+        animation-name: rotateFC;
+        animation-duration: $animationTime;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+      .fc2{ animation-delay: $animationTime * 1/6; }
+      .fc3{ animation-delay: $animationTime * 2/6; }
+      .fc4{ animation-delay: $animationTime * 3/6; }
+      .fc5{ animation-delay: $animationTime * 4/6; }
+      .fc6{ animation-delay: $animationTime * 5/6; }
+    @keyframes rotateFC { 100% {transform: rotate(360deg);} }
+  }
+}

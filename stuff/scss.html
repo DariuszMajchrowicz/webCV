@@ -1,0 +1,260 @@
+<pre><code class="language-css hljs">
+<span class="hljs-selector-tag">body</span> {
+  <span class="hljs-attribute">font-family</span>: <span class="hljs-string">"Lato"</span>, sans-serif;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#dddddd</span>;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-selector-tag">section</span> {
+  <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">120px</span>;
+}
+
+<span class="hljs-selector-class">.section-desc</span> {
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">50%</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">110%</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">overflow</span>: hidden;
+  <span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgba</span>(0, 0, 0, 0.1);
+  <span class="hljs-attribute">font-weight</span>: <span class="hljs-number">900</span>;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">70vh</span>;
+  <span class="hljs-attribute">left</span>: -<span class="hljs-number">10%</span>;
+  <span class="hljs-attribute">letter-spacing</span>: <span class="hljs-number">0.05em</span>;
+  <span class="hljs-attribute">margin-right</span>: <span class="hljs-number">0.05em</span>;
+  <span class="hljs-attribute">-webkit-transform</span>: <span class="hljs-built_in">translate</span>(0%, -50%);
+          <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(0%, -50%);
+  <span class="hljs-attribute">pointer-events</span>: none;
+  <span class="hljs-attribute">-webkit-user-select</span>: none;
+     <span class="hljs-attribute">-moz-user-select</span>: none;
+      <span class="hljs-attribute">-ms-user-select</span>: none;
+          <span class="hljs-attribute">user-select</span>: none;
+}
+
+<span class="hljs-selector-class">.close-rotation-btn</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">30px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">30px</span>;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">2.1px</span> solid <span class="hljs-number">#fff</span>;
+  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">display</span>: -webkit-box;
+  <span class="hljs-attribute">display</span>: -ms-flexbox;
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">-webkit-box-pack</span>: center;
+      <span class="hljs-attribute">-ms-flex-pack</span>: center;
+          <span class="hljs-attribute">justify-content</span>: center;
+  <span class="hljs-attribute">-webkit-box-align</span>: center;
+      <span class="hljs-attribute">-ms-flex-align</span>: center;
+          <span class="hljs-attribute">align-items</span>: center;
+  <span class="hljs-attribute">overflow</span>: hidden;
+  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">rgba</span>(0, 0, 0, 0.6);
+}
+
+<span class="hljs-selector-class">.close-rotation-btn</span> <span class="hljs-selector-class">.line</span> {
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">3px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">21px</span>;
+  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">4.5px</span>;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#fff</span>;
+  <span class="hljs-attribute">transition-duration</span>: <span class="hljs-number">0.25s</span>;
+}
+
+<span class="hljs-selector-class">.close-rotation-btn</span> <span class="hljs-selector-class">.line</span><span class="hljs-selector-class">.line-one</span> {
+  <span class="hljs-attribute">-webkit-transform</span>: <span class="hljs-built_in">rotate</span>(45deg);
+          <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(45deg);
+}
+
+<span class="hljs-selector-class">.close-rotation-btn</span> <span class="hljs-selector-class">.line</span><span class="hljs-selector-class">.line-two</span> {
+  <span class="hljs-attribute">-webkit-transform</span>: <span class="hljs-built_in">rotate</span>(-45deg);
+          <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(-45deg);
+}
+
+<span class="hljs-selector-class">.close-rotation-btn</span> <span class="hljs-selector-class">.dot</span> {
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">4.5px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">4.5px</span>;
+  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#fff</span>;
+  <span class="hljs-attribute">transition-duration</span>: <span class="hljs-number">0.15s</span>;
+}
+
+<span class="hljs-selector-class">.close-rotation-btn</span><span class="hljs-selector-pseudo">:hover</span> {
+  <span class="hljs-attribute">-webkit-transform</span>: <span class="hljs-built_in">rotate</span>(180deg);
+          <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(180deg);
+  <span class="hljs-attribute">transition-duration</span>: <span class="hljs-number">0.4s</span>;
+  <span class="hljs-attribute">transition-delay</span>: <span class="hljs-number">0.1s</span>;
+}
+
+<span class="hljs-selector-class">.close-rotation-btn</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.line</span> {
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">18px</span>;
+}
+
+<span class="hljs-selector-class">.close-rotation-btn</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.dot</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">5.4px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">5.4px</span>;
+}
+
+<span class="hljs-selector-class">.close-rotation-btn</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.dot1</span> {
+  <span class="hljs-attribute">-webkit-transform</span>: <span class="hljs-built_in">translate</span>(-9.45px, -9.45px);
+          <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(-9.45px, -9.45px);
+}
+
+<span class="hljs-selector-class">.close-rotation-btn</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.dot2</span> {
+  <span class="hljs-attribute">-webkit-transform</span>: <span class="hljs-built_in">translate</span>(9.45px, -9.45px);
+          <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(9.45px, -9.45px);
+}
+
+<span class="hljs-selector-class">.close-rotation-btn</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.dot3</span> {
+  <span class="hljs-attribute">-webkit-transform</span>: <span class="hljs-built_in">translate</span>(-9.45px, 9.45px);
+          <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(-9.45px, 9.45px);
+}
+
+<span class="hljs-selector-class">.close-rotation-btn</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.dot4</span> {
+  <span class="hljs-attribute">-webkit-transform</span>: <span class="hljs-built_in">translate</span>(9.45px, 9.45px);
+          <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(9.45px, 9.45px);
+}
+
+<span class="hljs-selector-id">#cover</span> {
+  <span class="hljs-attribute">position</span>: fixed;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100vh</span>;
+  <span class="hljs-attribute">min-height</span>: <span class="hljs-number">600px</span>;
+  <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-selector-id">#cover</span> <span class="hljs-selector-class">.flex-box</span> {
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">display</span>: -webkit-box;
+  <span class="hljs-attribute">display</span>: -ms-flexbox;
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">-webkit-box-pack</span>: center;
+      <span class="hljs-attribute">-ms-flex-pack</span>: center;
+          <span class="hljs-attribute">justify-content</span>: center;
+  <span class="hljs-attribute">-webkit-box-align</span>: center;
+      <span class="hljs-attribute">-ms-flex-align</span>: center;
+          <span class="hljs-attribute">align-items</span>: center;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+}
+
+<span class="hljs-selector-id">#cover</span> <span class="hljs-selector-class">.code-block</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#1E1E1E</span>;
+}
+
+<span class="hljs-selector-id">#cover</span> <span class="hljs-selector-class">.code-block</span> <span class="hljs-selector-tag">pre</span> {
+  <span class="hljs-attribute">white-space</span>: pre-wrap;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-selector-id">#cover</span> <span class="hljs-selector-class">.code-block</span> <span class="hljs-selector-tag">code</span> {
+  <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">10%</span>;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">transition-duration</span>: <span class="hljs-number">5s</span>;
+  <span class="hljs-attribute">transition-timing-function</span>: linear;
+}
+
+<span class="hljs-selector-id">#cover</span> <span class="hljs-selector-class">.code-block</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-tag">code</span> {
+  <span class="hljs-attribute">-webkit-transform</span>: <span class="hljs-built_in">translateY</span>(-100%);
+          <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(-100%);
+}
+
+<span class="hljs-selector-id">#about</span> {
+  <span class="hljs-attribute">position</span>: relative;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">30px</span> <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100vh</span>;
+  <span class="hljs-attribute">min-height</span>: <span class="hljs-number">600px</span>;
+}
+
+<span class="hljs-selector-id">#about</span> <span class="hljs-selector-class">.flex-box</span> {
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">display</span>: -webkit-box;
+  <span class="hljs-attribute">display</span>: -ms-flexbox;
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">-webkit-box-pack</span>: center;
+      <span class="hljs-attribute">-ms-flex-pack</span>: center;
+          <span class="hljs-attribute">justify-content</span>: center;
+  <span class="hljs-attribute">-webkit-box-align</span>: center;
+      <span class="hljs-attribute">-ms-flex-align</span>: center;
+          <span class="hljs-attribute">align-items</span>: center;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+}
+
+<span class="hljs-selector-id">#about</span> <span class="hljs-selector-class">.about-box</span> {
+  <span class="hljs-attribute">text-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-built_in">rgba</span>(0, 0, 0, 0.8);
+  <span class="hljs-attribute">text-align</span>: center;
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#fff</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span> <span class="hljs-number">10%</span>;
+}
+
+<span class="hljs-selector-id">#about</span> <span class="hljs-selector-class">.about-box</span> <span class="hljs-selector-tag">h1</span>, <span class="hljs-selector-id">#about</span> <span class="hljs-selector-class">.about-box</span> <span class="hljs-selector-tag">h1</span>, <span class="hljs-selector-id">#about</span> <span class="hljs-selector-class">.about-box</span> <span class="hljs-selector-tag">h3</span> {
+  <span class="hljs-attribute">line-height</span>: <span class="hljs-number">150%</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-selector-id">#about</span> <span class="hljs-selector-class">.about-box</span> <span class="hljs-selector-tag">h1</span> {
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">72px</span>;
+}
+
+<span class="hljs-selector-id">#about</span> <span class="hljs-selector-class">.about-box</span> <span class="hljs-selector-tag">h2</span> {
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">36px</span>;
+}
+
+<span class="hljs-selector-id">#about</span> <span class="hljs-selector-class">.about-box</span> <span class="hljs-selector-tag">h3</span> {
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">24px</span>;
+}
+
+<span class="hljs-selector-id">#skills</span> {
+  <span class="hljs-attribute">position</span>: relative;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">30px</span> <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100vh</span>;
+  <span class="hljs-attribute">min-height</span>: <span class="hljs-number">650px</span>;
+  <span class="hljs-attribute">overflow</span>: hidden;
+}
+
+<span class="hljs-selector-id">#skills</span> <span class="hljs-selector-class">.flex-box</span> {
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">display</span>: -webkit-box;
+  <span class="hljs-attribute">display</span>: -ms-flexbox;
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">-webkit-box-pack</span>: center;
+      <span class="hljs-attribute">-ms-flex-pack</span>: center;
+          <span class="hljs-attribute">justify-content</span>: center;
+  <span class="hljs-attribute">-webkit-box-orient</span>: horizontal;
+  <span class="hljs-attribute">-webkit-box-direction</span>: normal;
+      <span class="hljs-attribute">-ms-flex-flow</span>: row wrap;
+          <span class="hljs-attribute">flex-flow</span>: row wrap;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">50%</span>;
+}
+
+<span class="hljs-selector-id">#skills</span> <span class="hljs-selector-class">.flex-box-top</span> {
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">-webkit-box-align</span>: end;
+      <span class="hljs-attribute">-ms-flex-align</span>: end;
+          <span class="hljs-attribute">align-items</span>: flex-end;
+}
+
+<span class="hljs-selector-id">#skills</span> <span class="hljs-selector-class">.flex-box-top</span> <span class="hljs-selector-class">.desc-box</span> {
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">-webkit-transform</span>: <span class="hljs-built_in">translate</span>(-50%, -50%);
+          <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(-50%, -50%);
+}
+
+<span class="hljs-selector-id">#skills</span> <span class="hljs-selector-class">.flex-box-bottom</span> {
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">50%</span>;
+  <span class="hljs-attribute">-webkit-box-align</span>: start;
+      <span class="hljs-attribute">-ms-flex-align</span>: start;
+          <span class="hljs-attribute">align-items</span>: flex-start;
+}
+                    </code></pre>

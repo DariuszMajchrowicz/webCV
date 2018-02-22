@@ -5,9 +5,11 @@ class Boxes {
   constructor() {
     // == Setings ==
     this.animationTime = 0.5;
+    this.introTime = 0.5;
 
     // == Variables ==
     this.openedBoxArray = [];
+    this.windowWidth = window.innerWidth;
 
     // == Elements ==
     this.boxes = document.querySelectorAll('#boxes .box');
@@ -21,6 +23,17 @@ class Boxes {
 
     this.mainTitles = document.querySelectorAll('#boxes .box .main-title');
     this.closeBtns = document.querySelectorAll('#boxes .box .close-box-btn');
+  }
+
+  intro(){
+
+
+    TweenMax.from(this.boxes[0], this.introTime, { x: this.windowWidth, delay: this.introTime * 0 });
+    TweenMax.from(this.boxes[1], this.introTime, { x: -this.windowWidth, delay: this.introTime * 0.1 });
+    TweenMax.from(this.boxes[2], this.introTime, { x: this.windowWidth, delay: this.introTime * 0.2 });
+    TweenMax.from(this.boxes[3], this.introTime, { x: -this.windowWidth, delay: this.introTime * 0.3 });
+
+    
   }
 
   addEventListeners() {
@@ -41,6 +54,8 @@ class Boxes {
 
     TweenMax.set([this.leftText[_boxNumber], this.righText[_boxNumber]], { opacity: 1 });
     TweenMax.set(this.mainTitles[_boxNumber], { opacity: 0 });
+    TweenMax.set(this.closeBtns[_boxNumber], { opacity: 1 });
+
 
     this.boxEventArea[_boxNumber].style.display = 'none';
     this.openedBoxArray[_boxNumber] = true;
@@ -65,10 +80,12 @@ class Boxes {
         this.boxEventArea[_boxNumber].style.display = 'block';
       }
     });
+    TweenMax.set(this.closeBtns[_boxNumber], { opacity: 0, delay: this.animationTime * 0.65 });
 
   }
 
   init() {
+    // this.intro();
     this.addEventListeners();
   }
 }

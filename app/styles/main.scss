@@ -1,20 +1,18 @@
 $icon-font-path: "../fonts/";
-// bower:scss
-@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-// endbower
 
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700,900&subset=latin-ext");
 
-// $mainColor: #228a7b;
-// $mainColor: #10bfc5;
+$mainColor: #4ef05b;
 $mainColor: #dddddd;
 
 body {
   font-family: "Lato", sans-serif;  
   background: $mainColor;
+  margin: 0;
+  padding: 0;
 }
 section{
-  margin-bottom: 100px;
+  margin-bottom: 120px;
 }
 .section-desc {
   position: absolute;
@@ -33,11 +31,20 @@ section{
   user-select: none;
 }
 
-@import "trigonometry.scss";
+@import "__trigonometry.scss";
+@import "__btns.scss";
+@import "_codestyle_vs2015.scss";
 
+@import "_cover.scss";
+@import "_about.scss";
 @import "_skills.scss";
 @import "_boxes.scss";
 @import "_wheel.scss";
+@import "_footer.scss";
+@import "_navigation.scss";
+
+
+@import "_test.scss";
 
 
 

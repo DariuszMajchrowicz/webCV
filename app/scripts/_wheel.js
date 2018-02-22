@@ -17,7 +17,7 @@ class Wheel {
     // == Elements ==
     this.smallCirles = document.querySelectorAll('.wheel-circle');
     this.innerCirle = document.querySelector('.inner-circle');
-    this.innerCirleIcons = document.querySelectorAll('.inner-circle i');
+    this.innerCirleIcons = document.querySelectorAll('.inner-circle span');
     this.boxes = document.querySelectorAll('#wheel .box-container .box');
     this.innerBoxes = document.querySelectorAll('#wheel .box-container .box .inner-box');
     this.numberOfCircles = this.smallCirles.length;

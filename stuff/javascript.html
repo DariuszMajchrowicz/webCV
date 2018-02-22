@@ -1,0 +1,253 @@
+<pre><code class="language-javascript hljs"><span class="hljs-meta">
+'use strict'</span>;
+
+<span class="hljs-keyword">var</span> _createClass = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">defineProperties</span>(<span class="hljs-params">target, props</span>) </span>{ <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; props.length; i++) { <span class="hljs-keyword">var</span> descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || <span class="hljs-literal">false</span>; descriptor.configurable = <span class="hljs-literal">true</span>; <span class="hljs-keyword">if</span> (<span class="hljs-string">"value"</span> <span class="hljs-keyword">in</span> descriptor) descriptor.writable = <span class="hljs-literal">true</span>; <span class="hljs-built_in">Object</span>.defineProperty(target, descriptor.key, descriptor); } } <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Constructor, protoProps, staticProps</span>) </span>{ <span class="hljs-keyword">if</span> (protoProps) defineProperties(Constructor.prototype, protoProps); <span class="hljs-keyword">if</span> (staticProps) defineProperties(Constructor, staticProps); <span class="hljs-keyword">return</span> Constructor; }; }();
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_classCallCheck</span>(<span class="hljs-params">instance, Constructor</span>) </span>{ <span class="hljs-keyword">if</span> (!(instance <span class="hljs-keyword">instanceof</span> Constructor)) { <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">"Cannot call a class as a function"</span>); } }
+
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Script is loaded'</span>);
+
+<span class="hljs-built_in">document</span>.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.readyState === <span class="hljs-string">'complete'</span>) {
+    <span class="hljs-keyword">var</span> cover = <span class="hljs-keyword">new</span> Cover();
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'%c Document is ready'</span>, <span class="hljs-string">'color: #42dcf4'</span>);
+    <span class="hljs-keyword">const</span> boxes = <span class="hljs-keyword">new</span> Boxes();
+    <span class="hljs-keyword">const</span> skills = <span class="hljs-keyword">new</span> Skills();
+    <span class="hljs-keyword">const</span> wheel = <span class="hljs-keyword">new</span> Wheel();
+
+    cover.init();
+    boxes.init();
+    skills.init();
+    wheel.init();
+
+    addSmothScrollToNav();
+
+  }
+};
+<span class="hljs-comment">// ======= Boxes.JS =======</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Boxes is loaded'</span>);
+
+<span class="hljs-keyword">var</span> Boxes = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Boxes</span>(<span class="hljs-params"></span>) </span>{
+    _classCallCheck(<span class="hljs-keyword">this</span>, Boxes);
+
+    <span class="hljs-comment">// == Setings ==</span>
+    <span class="hljs-keyword">this</span>.animationTime = <span class="hljs-number">0.5</span>;
+    <span class="hljs-keyword">this</span>.introTime = <span class="hljs-number">0.5</span>;
+
+    <span class="hljs-comment">// == Variables ==</span>
+    <span class="hljs-keyword">this</span>.openedBoxArray = [];
+    <span class="hljs-keyword">this</span>.windowWidth = <span class="hljs-built_in">window</span>.innerWidth;
+
+    <span class="hljs-comment">// == Elements ==</span>
+    <span class="hljs-keyword">this</span>.boxes = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'#boxes .box'</span>);
+    <span class="hljs-keyword">this</span>.boxEventArea = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'#boxes .box-event-area'</span>);
+
+    <span class="hljs-keyword">this</span>.leftSideOfBox = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'#boxes .box .translation-box-left'</span>);
+    <span class="hljs-keyword">this</span>.rightSideOfBox = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'#boxes .box .translation-box-right'</span>);
+
+    <span class="hljs-keyword">this</span>.leftText = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'#boxes .box .translation-box-left .box-title'</span>);
+    <span class="hljs-keyword">this</span>.righText = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'#boxes .box .translation-box-right .box-title'</span>);
+
+    <span class="hljs-keyword">this</span>.mainTitles = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'#boxes .box .main-title'</span>);
+    <span class="hljs-keyword">this</span>.closeBtns = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'#boxes .box .close-box-btn'</span>);
+  }
+
+  _createClass(Boxes, [{
+    <span class="hljs-attr">key</span>: <span class="hljs-string">'intro'</span>,
+    <span class="hljs-attr">value</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">intro</span>(<span class="hljs-params"></span>) </span>{
+
+      TweenMax.from(<span class="hljs-keyword">this</span>.boxes[<span class="hljs-number">0</span>], <span class="hljs-keyword">this</span>.introTime, { <span class="hljs-attr">x</span>: <span class="hljs-keyword">this</span>.windowWidth, <span class="hljs-attr">delay</span>: <span class="hljs-keyword">this</span>.introTime * <span class="hljs-number">0</span> });
+      TweenMax.from(<span class="hljs-keyword">this</span>.boxes[<span class="hljs-number">1</span>], <span class="hljs-keyword">this</span>.introTime, { <span class="hljs-attr">x</span>: -<span class="hljs-keyword">this</span>.windowWidth, <span class="hljs-attr">delay</span>: <span class="hljs-keyword">this</span>.introTime * <span class="hljs-number">0.1</span> });
+      TweenMax.from(<span class="hljs-keyword">this</span>.boxes[<span class="hljs-number">2</span>], <span class="hljs-keyword">this</span>.introTime, { <span class="hljs-attr">x</span>: <span class="hljs-keyword">this</span>.windowWidth, <span class="hljs-attr">delay</span>: <span class="hljs-keyword">this</span>.introTime * <span class="hljs-number">0.2</span> });
+      TweenMax.from(<span class="hljs-keyword">this</span>.boxes[<span class="hljs-number">3</span>], <span class="hljs-keyword">this</span>.introTime, { <span class="hljs-attr">x</span>: -<span class="hljs-keyword">this</span>.windowWidth, <span class="hljs-attr">delay</span>: <span class="hljs-keyword">this</span>.introTime * <span class="hljs-number">0.3</span> });
+    }
+  }, {
+    <span class="hljs-attr">key</span>: <span class="hljs-string">'addEventListeners'</span>,
+    <span class="hljs-attr">value</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addEventListeners</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> _this = <span class="hljs-keyword">this</span>;
+
+      <span class="hljs-keyword">var</span> _loop = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_loop</span>(<span class="hljs-params">i</span>) </span>{
+        _this.boxEventArea[i].addEventListener(<span class="hljs-string">'mouseover'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+          _this.peekBox(i);
+        });
+        _this.boxEventArea[i].addEventListener(<span class="hljs-string">'mousedown'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+          _this.openBox(i);
+        });
+        _this.boxEventArea[i].addEventListener(<span class="hljs-string">'mouseout'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+          _this.closeBox(i);
+        });
+        _this.closeBtns[i].addEventListener(<span class="hljs-string">'mousedown'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+          _this.openedBoxArray[i] = <span class="hljs-literal">false</span>;
+          _this.closeBox(i);
+        });
+      };
+
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-keyword">this</span>.boxes.length; i++) {
+        _loop(i);
+      }
+    }
+  }, {
+    <span class="hljs-attr">key</span>: <span class="hljs-string">'openBox'</span>,
+    <span class="hljs-attr">value</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">openBox</span>(<span class="hljs-params">_boxNumber</span>) </span>{
+      TweenMax.to(<span class="hljs-keyword">this</span>.leftSideOfBox[_boxNumber], <span class="hljs-keyword">this</span>.animationTime, { <span class="hljs-attr">x</span>: <span class="hljs-string">'-75%'</span> });
+      TweenMax.to(<span class="hljs-keyword">this</span>.rightSideOfBox[_boxNumber], <span class="hljs-keyword">this</span>.animationTime, { <span class="hljs-attr">x</span>: <span class="hljs-string">'75%'</span> });
+
+      TweenMax.set([<span class="hljs-keyword">this</span>.leftText[_boxNumber], <span class="hljs-keyword">this</span>.righText[_boxNumber]], { <span class="hljs-attr">opacity</span>: <span class="hljs-number">1</span> });
+      TweenMax.set(<span class="hljs-keyword">this</span>.mainTitles[_boxNumber], { <span class="hljs-attr">opacity</span>: <span class="hljs-number">0</span> });
+      TweenMax.set(<span class="hljs-keyword">this</span>.closeBtns[_boxNumber], { <span class="hljs-attr">opacity</span>: <span class="hljs-number">1</span> });
+
+      <span class="hljs-keyword">this</span>.boxEventArea[_boxNumber].style.display = <span class="hljs-string">'none'</span>;
+      <span class="hljs-keyword">this</span>.openedBoxArray[_boxNumber] = <span class="hljs-literal">true</span>;
+    }
+  }, {
+    <span class="hljs-attr">key</span>: <span class="hljs-string">'peekBox'</span>,
+    <span class="hljs-attr">value</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">peekBox</span>(<span class="hljs-params">_boxNumber</span>) </span>{
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.openedBoxArray[_boxNumber]) {
+        <span class="hljs-keyword">return</span>;
+      }
+      TweenMax.to(<span class="hljs-keyword">this</span>.leftSideOfBox[_boxNumber], <span class="hljs-keyword">this</span>.animationTime, { <span class="hljs-attr">x</span>: <span class="hljs-string">'-5%'</span> });
+      TweenMax.to(<span class="hljs-keyword">this</span>.rightSideOfBox[_boxNumber], <span class="hljs-keyword">this</span>.animationTime, { <span class="hljs-attr">x</span>: <span class="hljs-string">'5%'</span> });
+
+      TweenMax.set([<span class="hljs-keyword">this</span>.leftText[_boxNumber], <span class="hljs-keyword">this</span>.righText[_boxNumber]], { <span class="hljs-attr">opacity</span>: <span class="hljs-number">1</span> });
+      TweenMax.set(<span class="hljs-keyword">this</span>.mainTitles[_boxNumber], { <span class="hljs-attr">opacity</span>: <span class="hljs-number">0</span> });
+    }
+  }, {
+    <span class="hljs-attr">key</span>: <span class="hljs-string">'closeBox'</span>,
+    <span class="hljs-attr">value</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">closeBox</span>(<span class="hljs-params">_boxNumber</span>) </span>{
+      <span class="hljs-keyword">var</span> _this2 = <span class="hljs-keyword">this</span>;
+
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.openedBoxArray[_boxNumber]) {
+        <span class="hljs-keyword">return</span>;
+      }
+      TweenMax.to([<span class="hljs-keyword">this</span>.leftSideOfBox[_boxNumber], <span class="hljs-keyword">this</span>.rightSideOfBox[_boxNumber]], <span class="hljs-keyword">this</span>.animationTime, {
+        <span class="hljs-attr">x</span>: <span class="hljs-string">'0%'</span>,
+        <span class="hljs-attr">onComplete</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onComplete</span>(<span class="hljs-params"></span>) </span>{
+          TweenMax.set([_this2.leftText[_boxNumber], _this2.righText[_boxNumber]], { <span class="hljs-attr">opacity</span>: <span class="hljs-number">0</span> });
+          TweenMax.set(_this2.mainTitles[_boxNumber], { <span class="hljs-attr">opacity</span>: <span class="hljs-number">1</span> });
+          _this2.boxEventArea[_boxNumber].style.display = <span class="hljs-string">'block'</span>;
+        }
+      });
+      TweenMax.set(<span class="hljs-keyword">this</span>.closeBtns[_boxNumber], { <span class="hljs-attr">opacity</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">delay</span>: <span class="hljs-keyword">this</span>.animationTime * <span class="hljs-number">0.65</span> });
+    }
+  }, {
+    <span class="hljs-attr">key</span>: <span class="hljs-string">'init'</span>,
+    <span class="hljs-attr">value</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-comment">// this.intro();</span>
+      <span class="hljs-keyword">this</span>.addEventListeners();
+    }
+  }]);
+
+  <span class="hljs-keyword">return</span> Boxes;
+}();
+<span class="hljs-comment">// ======= Cover.JS =======</span>
+
+
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Cover is loaded'</span>);
+
+<span class="hljs-keyword">var</span> Cover = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Cover</span>(<span class="hljs-params"></span>) </span>{
+    _classCallCheck(<span class="hljs-keyword">this</span>, Cover);
+
+    <span class="hljs-comment">// == Setings ==</span>
+    <span class="hljs-keyword">this</span>.animationTime = <span class="hljs-number">0.5</span>;
+    <span class="hljs-keyword">this</span>.introTime = <span class="hljs-number">0.5</span>;
+
+    <span class="hljs-comment">// == Variables ==</span>
+    <span class="hljs-keyword">this</span>.openedBoxArray = [];
+    <span class="hljs-keyword">this</span>.windowWidth = <span class="hljs-built_in">window</span>.innerWidth;
+
+    <span class="hljs-comment">// == Elements ==</span>
+  }
+
+  _createClass(Cover, [{
+    <span class="hljs-attr">key</span>: <span class="hljs-string">'intro'</span>,
+    <span class="hljs-attr">value</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">intro</span>(<span class="hljs-params"></span>) </span>{}
+  }, {
+    <span class="hljs-attr">key</span>: <span class="hljs-string">'addEventListeners'</span>,
+    <span class="hljs-attr">value</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addEventListeners</span>(<span class="hljs-params"></span>) </span>{}
+  }, {
+    <span class="hljs-attr">key</span>: <span class="hljs-string">'init'</span>,
+    <span class="hljs-attr">value</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">this</span>.addEventListeners();
+    }
+  }]);
+
+  <span class="hljs-keyword">return</span> Cover;
+}();
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addSmothScrollToNav</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> buttons = [<span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#about-nav-btn'</span>), <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#skills-nav-btn'</span>), <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#boxes-nav-btn'</span>), <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#wheel-nav-btn'</span>), <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#footer-nav-btn'</span>)];
+
+  <span class="hljs-keyword">var</span> sections = [<span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#about'</span>), <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#skills'</span>), <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#boxes'</span>), <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#wheel'</span>), <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#footer'</span>)];
+
+  <span class="hljs-keyword">var</span> _loop2 = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_loop2</span>(<span class="hljs-params">i</span>) </span>{
+    buttons[i].addEventListener(<span class="hljs-string">'mousedown'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'smoth'</span> + i);
+      scrollToY(sections[i].offsetTop, <span class="hljs-number">500</span>, <span class="hljs-string">'easeInOutQuint'</span>);
+    });
+  };
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; buttons.length; i++) {
+    _loop2(i);
+  }
+}
+<span class="hljs-comment">// first add raf shim</span>
+<span class="hljs-comment">// http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/</span>
+<span class="hljs-built_in">window</span>.requestAnimFrame = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">window</span>.requestAnimationFrame || <span class="hljs-built_in">window</span>.webkitRequestAnimationFrame || <span class="hljs-built_in">window</span>.mozRequestAnimationFrame || <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">callback</span>) </span>{
+    <span class="hljs-built_in">window</span>.setTimeout(callback, <span class="hljs-number">1000</span> / <span class="hljs-number">60</span>);
+  };
+}();
+
+<span class="hljs-comment">// main function</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scrollToY</span>(<span class="hljs-params">scrollTargetY, speed, easing</span>) </span>{
+  <span class="hljs-comment">// scrollTargetY: the target scrollY property of the window</span>
+  <span class="hljs-comment">// speed: time in pixels per second</span>
+  <span class="hljs-comment">// easing: easing equation to use</span>
+
+  <span class="hljs-keyword">var</span> scrollY = <span class="hljs-built_in">window</span>.scrollY || <span class="hljs-built_in">document</span>.documentElement.scrollTop,
+      scrollTargetY = scrollTargetY || <span class="hljs-number">0</span>,
+      speed = speed || <span class="hljs-number">2000</span>,
+      easing = easing || <span class="hljs-string">'easeOutSine'</span>,
+      currentTime = <span class="hljs-number">0</span>;
+
+  <span class="hljs-comment">// min time .1, max time .8 seconds</span>
+  <span class="hljs-keyword">var</span> time = <span class="hljs-built_in">Math</span>.max(<span class="hljs-number">.1</span>, <span class="hljs-built_in">Math</span>.min(<span class="hljs-built_in">Math</span>.abs(scrollY - scrollTargetY) / speed, <span class="hljs-number">.8</span>));
+
+  <span class="hljs-comment">// easing equations from https://github.com/danro/easing-js/blob/master/easing.js</span>
+  <span class="hljs-keyword">var</span> easingEquations = {
+    <span class="hljs-attr">easeOutSine</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">easeOutSine</span>(<span class="hljs-params">pos</span>) </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sin(pos * (<span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">2</span>));
+    },
+    <span class="hljs-attr">easeInOutSine</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">easeInOutSine</span>(<span class="hljs-params">pos</span>) </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-number">-0.5</span> * (<span class="hljs-built_in">Math</span>.cos(<span class="hljs-built_in">Math</span>.PI * pos) - <span class="hljs-number">1</span>);
+    },
+    <span class="hljs-attr">easeInOutQuint</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">easeInOutQuint</span>(<span class="hljs-params">pos</span>) </span>{
+      <span class="hljs-keyword">if</span> ((pos /= <span class="hljs-number">0.5</span>) &lt; <span class="hljs-number">1</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0.5</span> * <span class="hljs-built_in">Math</span>.pow(pos, <span class="hljs-number">5</span>);
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-number">0.5</span> * (<span class="hljs-built_in">Math</span>.pow(pos - <span class="hljs-number">2</span>, <span class="hljs-number">5</span>) + <span class="hljs-number">2</span>);
+    }
+  };
+
+  <span class="hljs-comment">// add animation loop</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tick</span>(<span class="hljs-params"></span>) </span>{
+    currentTime += <span class="hljs-number">1</span> / <span class="hljs-number">60</span>;
+
+    <span class="hljs-keyword">var</span> p = currentTime / time;
+    <span class="hljs-keyword">var</span> t = easingEquations[easing](p);
+
+    <span class="hljs-keyword">if</span> (p &lt; <span class="hljs-number">1</span>) {
+      requestAnimFrame(tick);
+
+      <span class="hljs-built_in">window</span>.scrollTo(<span class="hljs-number">0</span>, scrollY + (scrollTargetY - scrollY) * t);
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-built_in">window</span>.scrollTo(<span class="hljs-number">0</span>, scrollTargetY);
+    }
+  }
+
+  <span class="hljs-comment">// call it once to get started</span>
+  tick();
+}
+            </code></pre>

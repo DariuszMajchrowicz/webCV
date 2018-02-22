@@ -1,7 +1,3 @@
-// top
-
-
-
 #wheel{
   .section-desc {
     font-size: 63vh;
@@ -15,6 +11,8 @@
   $wheelCircleSize: ($mainCircleSize - $innerCircleSize) / 2;
   
   height: 100vh;
+  min-height: 600px;
+
   width: 100%;
   overflow: hidden;
   position: relative;
@@ -108,9 +106,9 @@
     .play{ 
       opacity: 0; 
     }
-    i{
+    i, span{
       position: absolute;
-      font-size: 60px;
+      font-size: 80px;
     }
     canvas{
       position: absolute;

@@ -1,0 +1,63 @@
+// === CLOSE BUTTONS ===
+
+.close-rotation-btn{
+  $size: 30px;
+  $color: #fff;
+  $time: 0.5s;
+  
+  width: $size;
+  height: $size;
+  border: $size * 0.07 solid $color;
+  border-radius: 50%;
+  
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  background: rgba(0, 0, 0, 0.6);
+
+
+  .line{
+    position: absolute;
+    width: $size * 0.1;
+    height: $size * 0.7;
+    border-radius: $size * 0.15;
+
+    background: $color;
+    transition-duration: $time * 0.5;
+
+    &.line-one{ transform: rotate(45deg); }
+    &.line-two{ transform: rotate(-45deg); }
+  }
+  .dot{
+    position: absolute;
+    width: $size * 0.15;
+    height: $size * 0.15;
+    border-radius: 50%;
+    background: $color;
+
+    transition-duration: $time * 0.3;
+  }
+
+  &:hover{
+    transform: rotate(180deg);
+    transition-duration: $time * 0.8;
+    transition-delay: $time * 0.2;
+
+    .line { 
+      height: $size * 0.6;
+    }
+
+    .dot {
+      width: $size * 0.18;
+      height: $size * 0.18;
+    }
+    
+    .dot1{ transform: translate(-$size * 0.315, -$size * 0.315) }
+    .dot2{ transform: translate($size * 0.315, -$size * 0.315) }
+    .dot3{ transform: translate(-$size * 0.315, $size * 0.315) }
+    .dot4{ transform: translate($size * 0.315, $size * 0.315) }
+  }
+}

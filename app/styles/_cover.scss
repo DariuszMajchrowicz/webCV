@@ -1,0 +1,54 @@
+#cover {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;  
+  margin-bottom: 0;
+  background: #123456;
+  overflow: hidden;
+  &:hover .code-block pre{
+    transform: translateY(-90%);
+  }
+    .code-block{
+        position: absolute;
+        border: 2px solid #e9e9e9;
+        border-radius: 5px;
+        border-top: 30px solid #e9e9e9;
+        padding: 1px;
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+        opacity: 0.9;
+        overflow: hidden;
+        background: #1E1E1E;
+
+        pre{
+            transition-duration: 2s;
+            transition-timing-function: linear;
+            white-space: pre-wrap;
+            margin: 0;
+            overflow: hidden;
+        }
+        code{
+            padding-left: 3%;
+            margin: 0;
+            overflow: hidden;
+        }
+    }
+    .cb1{ 
+        top: 12%;
+        left: 1%;
+        width: 33%;
+        height: 70%;
+    };
+    .cb2{ 
+        top: 22%;
+        left: 45%;
+        width: 43%;
+        height: 70%;
+    };
+    .cb3{ 
+        top: 3%;
+        right: 1%;
+        width: 40%;
+        height: 60%;
+    };
+}
