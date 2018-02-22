@@ -2,8 +2,13 @@
 
 <section id="cover">
 
-<div class="code-block cb1">
-
+<div class="code-main-block cb1">
+<div class="dots">
+    <div class="red"></div>
+    <div class="yellow"></div>
+    <div class="green"></div>
+</div>
+<div class="code-block">
     <pre><code class="language-html hljs xml">
 <span class="hljs-meta">&lt;!doctype html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">""</span>&gt;</span>
@@ -277,8 +282,15 @@
 
                 </code></pre>
 </div>
+</div>
 
-<div class="code-block cb2">
+<div class="code-main-block cb2">
+    <div class="dots">
+        <div class="red"></div>
+        <div class="yellow"></div>
+        <div class="green"></div>
+    </div>
+    <div class="code-block">
     <pre><code class="language-css hljs">
 <span class="hljs-selector-tag">body</span> {
   <span class="hljs-attribute">font-family</span>: <span class="hljs-string">"Lato"</span>, sans-serif;
@@ -540,14 +552,18 @@
 }
                     </code></pre>
 </div>
+</div>
 
-<div class="code-block cb3">
+<div class="code-main-block cb3">
+    <div class="dots">
+        <div class="red"></div>
+        <div class="yellow"></div>
+        <div class="green"></div>
+    </div>
+    <div class="code-block">
     <pre><code class="language-javascript hljs">
-
 <span class="hljs-keyword">var</span> _createClass = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">defineProperties</span>(<span class="hljs-params">target, props</span>) </span>{ <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; props.length; i++) { <span class="hljs-keyword">var</span> descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || <span class="hljs-literal">false</span>; descriptor.configurable = <span class="hljs-literal">true</span>; <span class="hljs-keyword">if</span> (<span class="hljs-string">"value"</span> <span class="hljs-keyword">in</span> descriptor) descriptor.writable = <span class="hljs-literal">true</span>; <span class="hljs-built_in">Object</span>.defineProperty(target, descriptor.key, descriptor); } } <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Constructor, protoProps, staticProps</span>) </span>{ <span class="hljs-keyword">if</span> (protoProps) defineProperties(Constructor.prototype, protoProps); <span class="hljs-keyword">if</span> (staticProps) defineProperties(Constructor, staticProps); <span class="hljs-keyword">return</span> Constructor; }; }();
-
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_classCallCheck</span>(<span class="hljs-params">instance, Constructor</span>) </span>{ <span class="hljs-keyword">if</span> (!(instance <span class="hljs-keyword">instanceof</span> Constructor)) { <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">"Cannot call a class as a function"</span>); } }
-
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Script is loaded'</span>);
 
 <span class="hljs-built_in">document</span>.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
@@ -794,6 +810,7 @@
   tick();
 }
             </code></pre>
+</div>
 </div>
 
 </section>
