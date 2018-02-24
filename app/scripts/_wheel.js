@@ -15,18 +15,18 @@ class Wheel {
     this.currentAngle = 0;
 
     // == Elements ==
-    this.smallCirles = document.querySelectorAll('.wheel-circle');
-    this.innerCirle = document.querySelector('.inner-circle');
-    this.innerCirleIcons = document.querySelectorAll('.inner-circle span');
+    this.smallCirles = document.querySelectorAll('#wheel .wheel-circle');
+    this.innerCirle = document.querySelector('#wheel .inner-circle');
+    this.innerCirleIcons = document.querySelectorAll('#wheel .inner-circle span');
     this.boxes = document.querySelectorAll('#wheel .box-container .box');
     this.innerBoxes = document.querySelectorAll('#wheel .box-container .box .inner-box');
     this.numberOfCircles = this.smallCirles.length;
 
-    this.mainCircle = document.querySelector('.main-circle');
-    this.outerCircle = document.querySelector('.outer-circle');
+    this.mainCircle = document.querySelector('#wheel .main-circle');
+    this.outerCircle = document.querySelector('#wheel .outer-circle');
 
     // ==== Canvas ====
-    this.canvas = document.querySelector('#inner-circle-canvas');
+    this.canvas = document.querySelector('#wheel #inner-circle-canvas');
     this.ctx = this.canvas.getContext('2d');
     this.step = 0;
     this.startTime = 0;

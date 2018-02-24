@@ -10,7 +10,7 @@ class Cover {
 
         // == Variables ==
         this.openedBoxArray = [];
-        this.windowWidth = window.innerWidth;
+        this.windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
         // == Elements ==
         this.loadingBox = document.querySelector('#cover .loading-box');
@@ -22,6 +22,11 @@ class Cover {
         this.loadingText1Dots = document.querySelectorAll('#cover .loading-txt1 .dot');
         this.loadingText2Dots = document.querySelectorAll('#cover .loading-txt2 .dot');
         this.loadingText3Dots = document.querySelectorAll('#cover .loading-txt3 .dot');
+        this.loadingText4Dots = document.querySelectorAll('#cover .loading-txt4 .dot');
+
+        this.boxes = document.querySelectorAll('#cover .box');
+        this.circles = document.querySelectorAll('#cover .circle');
+        this.wheel = document.querySelectorAll('#cover .wheel');
 
     }
 
@@ -35,15 +40,14 @@ class Cover {
                 this.circleOrnament.classList.add('animation-FC');
             }
         })
-
-            .to(this.codeMainBoxes[0], this.animationPartialsTime, { x: '0%', ease: Back.easeOut.config(1.1) }, 0.4)
+            .to(this.codeMainBoxes[0], this.animationPartialsTime, { x: '0%', ease: Back.easeOut.config(2) }, 0.4)
             .to(this.codeBoxes[0], this.codeTime, { y: '-95%', ease: Power0.easeNone }, 0.4)
             .to(this.loadingTexts[0], 0.1, { opacity: 1 }, 0.3)
             .set(this.loadingText1Dots[0], { opacity: 1 }, 0.5)
             .set(this.loadingText1Dots[1], { opacity: 1 }, 0.6)
             .set(this.loadingText1Dots[2], { opacity: 1 }, 0.7)
 
-            .to(this.codeMainBoxes[1], this.animationPartialsTime, { x: '0%', ease: Back.easeOut.config(1.1) }, 0.8)
+            .to(this.codeMainBoxes[1], this.animationPartialsTime, { x: '0%', ease: Back.easeOut.config(2) }, 0.8)
             .to(this.codeBoxes[1], this.codeTime, { y: '-95%', ease: Power0.easeNone }, 0.8)
             .set(this.loadingTexts[0], { opacity: 0 }, 0.8)
             .set(this.loadingTexts[1], { opacity: 1 }, 0.8)
@@ -51,7 +55,7 @@ class Cover {
             .set(this.loadingText2Dots[1], { opacity: 1 }, 1.0)
             .set(this.loadingText2Dots[2], { opacity: 1 }, 1.1)
 
-            .to(this.codeMainBoxes[2], this.animationPartialsTime, { y: '0%', ease: Back.easeOut.config(1.1) }, 1.2)
+            .to(this.codeMainBoxes[2], this.animationPartialsTime, { y: '0%', ease: Back.easeOut.config(2) }, 1.2)
             .to(this.codeBoxes[2], this.codeTime, { y: '-95%', ease: Power0.easeNone }, 1.2)
             .set(this.loadingTexts[1], { opacity: 0 }, 1.2)
             .set(this.loadingTexts[2], { opacity: 1 }, 1.2)
@@ -60,9 +64,30 @@ class Cover {
             .set(this.loadingText3Dots[2], { opacity: 1 }, 1.5)
 
 
-            .to(this.codeMainBoxes[0], this.animationPartialsTime, { y: '-130%', ease: Back.easeIn.config(1.1) }, 1.4)
-            .to(this.codeMainBoxes[1], this.animationPartialsTime, { x: '140%', ease: Back.easeIn.config(1.1) }, 1.6)
-            .to(this.codeMainBoxes[2], this.animationPartialsTime, { y: '-130%', ease: Back.easeIn.config(1.1) }, 1.8);
+            .to(this.codeMainBoxes[0], this.animationPartialsTime, { y: '-130%', ease: Back.easeIn.config(1) }, 1.4)
+            .to(this.codeMainBoxes[1], this.animationPartialsTime, { x: '140%', ease: Back.easeIn.config(1) }, 1.6)
+            .to(this.codeMainBoxes[2], this.animationPartialsTime, { y: '-130%', ease: Back.easeIn.config(1) }, 1.8)
+
+            .staggerTo(this.boxes, this.animationPartialsTime, { scale: 1, ease: Back.easeOut.config(1) }, 0.225, 1.8)
+            .staggerTo(this.circles, this.animationPartialsTime, { scale: 1, ease: Back.easeOut.config(1) }, 0.1, 1.8)
+            .to(this.wheel, this.animationPartialsTime * 2, { scale: 1, ease: Back.easeOut.config(1) }, 2)
+
+            .set(this.loadingTexts[2], { opacity: 0 }, 1.7)
+            .set(this.loadingTexts[3], { opacity: 1 }, 1.7)
+            .set(this.loadingText4Dots[0], { opacity: 1 }, 1.8)
+            .set(this.loadingText4Dots[1], { opacity: 1 }, 1.9)
+            .set(this.loadingText4Dots[2], { opacity: 1 }, 2)
+            .set(this.loadingText4Dots, { opacity: 0 }, 2.1)
+            .set(this.loadingText4Dots[0], { opacity: 1 }, 2.2)
+            .set(this.loadingText4Dots[1], { opacity: 1 }, 2.3)
+            .set(this.loadingText4Dots[2], { opacity: 1 }, 2.4)
+
+            .to(this.boxes[0], this.animationPartialsTime, { x: -this.windowWidth * 0.125, y: '-50%', rotation: 5, ease: Back.easeInOut.config(2) }, 3)
+            .to(this.boxes[0], this.animationPartialsTime / 2, { rotation: 20, yoyo: true, repeat: 1, ease: Back.easeInOut.config(2) }, 3)
+            .to(this.boxes[1], this.animationPartialsTime, { x: -this.windowWidth * 0.375, y: '50%', rotation: 360, ease: Back.easeInOut.config(2) }, 3.2)
+            
+
+        // introTimeline.timeScale(0.3);
         }
 
     addEventListeners() {

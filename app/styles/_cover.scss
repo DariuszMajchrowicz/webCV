@@ -4,9 +4,9 @@
   height: 100vh;
   min-height: 600px;  
   margin-bottom: 0;
-  background: #666;
+  background: #333;
   overflow: hidden;
-  background: linear-gradient(155deg, #000000 0%, #131313 51%, #000000);
+//   background: linear-gradient(155deg, #000000 0%, #131313 51%, #000000);
 
     .code-main-block{
         position: absolute;
@@ -40,7 +40,7 @@
         .dots{
             position: absolute;
             top: -23px;
-            right: 10px;
+            left: 10px;
             width: 71px;
             height: 20px;
             display: flex;
@@ -97,7 +97,7 @@
         z-index: 2;
         overflow: hidden;
 
-        background: rgba(0, 0, 0, 0.95);
+        background: rgba(0, 0, 0, 0.7);
         transform: scale(0);
         .loading-txt-wrapper{
             width: 100%;
@@ -155,5 +155,54 @@
         }
         @keyframes rotateFC { 100% {transform: rotate(360deg);} }
     }
+    .elements-wrapper{
+        $scale: 0.75;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        .circle, .box, .wheel {
+            transform: scale(0);
+            border: 1px solid #000;
+        }
+        .circle{
+            position: absolute;
+            width: 120px * $scale;
+            height: 120px * $scale;
+            border-radius: 50%;
+            background: #c4c4c4;
 
+            &.circle1 { left: calc(6.6% - #{60px * $scale}); top: calc(50.1% - #{60px * $scale});}
+            &.circle2 { left: calc(19.8% - #{60px * $scale}); top: calc(50.1% - #{60px * $scale});}
+            &.circle3 { left: calc(32% - #{60px * $scale}); top: calc(50.1% - #{60px * $scale});}
+            &.circle4 { left: calc(6.6% - #{60px * $scale}); top: calc(70.1% - #{60px * $scale});}
+            &.circle5 { left: calc(19.8% - #{60px * $scale}); top: calc(70.1% - #{60px * $scale});}
+            &.circle6 { left: calc(32% - #{60px * $scale}); top: calc(70.1% - #{60px * $scale});}
+            &.circle7 { left: calc(6.6% - #{60px * $scale}); top: calc(90.2% - #{60px * $scale});}
+            &.circle8 { left: calc(19.8% - #{60px * $scale}); top: calc(90.2% - #{60px * $scale});}
+            &.circle9 { left: calc(32% - #{60px * $scale}); top: calc(90.2% - #{60px * $scale});}
+        }
+        .box{
+            position: absolute;
+            width: 400px * $scale;
+            height: 250px * $scale;
+            background: #c4c4c4;
+            border-radius: 10px * $scale;
+            top: calc(20.5% - #{125px * $scale});
+            &.box1 { left: calc(12.5% - #{200px * $scale})}
+            &.box2 { left: calc(37.5% - #{200px * $scale})}
+            &.box3 { left: calc(62.5% - #{200px * $scale})}
+            &.box4 { left: calc(87.5% - #{200px * $scale})}
+        }
+        .wheel{
+            position: absolute;
+            width: 500px * $scale;
+            height: 500px * $scale;
+            border-radius: 50%;
+            background: #c4c4c4;
+            left: calc(69.8% - #{250px * $scale}); 
+            top: calc(69% - #{250px * $scale});
+        }
+    }
 }
