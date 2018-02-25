@@ -4,7 +4,7 @@
   height: 100vh;
   min-height: 600px;  
   margin-bottom: 0;
-  background: #333;
+  background: #222;
   overflow: hidden;
 //   background: linear-gradient(155deg, #000000 0%, #131313 51%, #000000);
 
@@ -164,15 +164,18 @@
         left: 0;
         .circle, .box, .wheel {
             transform: scale(0);
-            border: 1px solid #000;
+            border: 1px solid #1f4c8a;
+
+            background: rgba(49, 168, 206, 0.5);
+            background: linear-gradient(141deg, #a4d4e4, rgba(0, 102, 255, 0.43));
+            box-shadow: 10px 10px 30px 0px #000000;
+            
         }
         .circle{
             position: absolute;
             width: 120px * $scale;
             height: 120px * $scale;
             border-radius: 50%;
-            background: #c4c4c4;
-
             &.circle1 { left: calc(6.6% - #{60px * $scale}); top: calc(50.1% - #{60px * $scale});}
             &.circle2 { left: calc(19.8% - #{60px * $scale}); top: calc(50.1% - #{60px * $scale});}
             &.circle3 { left: calc(32% - #{60px * $scale}); top: calc(50.1% - #{60px * $scale});}
@@ -187,7 +190,6 @@
             position: absolute;
             width: 400px * $scale;
             height: 250px * $scale;
-            background: #c4c4c4;
             border-radius: 10px * $scale;
             top: calc(20.5% - #{125px * $scale});
             &.box1 { left: calc(12.5% - #{200px * $scale})}
@@ -200,7 +202,6 @@
             width: 500px * $scale;
             height: 500px * $scale;
             border-radius: 50%;
-            background: #c4c4c4;
             left: calc(69.8% - #{250px * $scale}); 
             top: calc(69% - #{250px * $scale});
         }

@@ -83,25 +83,28 @@ class Cover {
             .set(this.loadingText4Dots[1], { opacity: 1 }, 2.3)
             .set(this.loadingText4Dots[2], { opacity: 1 }, 2.4)
 
-            .to(this.boxes[0], this.animationPartialsTime, { x: -this.windowWidth * 0.125, y: this.windowHeight * 0.06, ease: Back.easeInOut.config(2) }, 3)
-            .to(this.boxes[1], this.animationPartialsTime, { x: -this.windowWidth * 0.375, y: -this.windowHeight * 0.185, ease: Back.easeInOut.config(2) }, 3)
+            .to(this.boxes[0], this.animationPartialsTime, { x: -this.windowWidth * 0.125, y: this.windowHeight * 0.06, rotation: 5, ease: Back.easeOut.config(1.3) }, 2.5)
+            .to(this.boxes[1], this.animationPartialsTime, { x: -this.windowWidth * 0.39, y: -this.windowHeight * 0.185, ease: Back.easeOut.config(1.3) }, 2.6)
+            .to(this.boxes[1], this.animationPartialsTime * 0.7, { rotation: 175, ease: Back.easeOut.config(3) }, 2.6)
+            .to(this.boxes[2], this.animationPartialsTime, { x: this.windowWidth * 0.375, y: -this.windowHeight * 0.185, rotation: 3, ease: Back.easeOut.config(3) }, 2.7)
+            .to(this.boxes[2], this.animationPartialsTime / 2, { rotation: -5, repeat: 1, yoyo: true, ease: Back.easeInOut.config(1) }, 2.6)
+            .to(this.boxes[3], this.animationPartialsTime * 4, { x: this.windowWidth * 0.11, y: this.windowHeight * 0.06, ease: Back.easeOut.config(1) }, 2.8)
+            .to(this.boxes[3], this.animationPartialsTime, { rotation: -5, }, 2.8)
             
-            .to(this.boxes[2], this.animationPartialsTime, { x: this.windowWidth * 0.375, y: -this.windowHeight * 0.185, ease: Back.easeInOut.config(2) }, 3)
-            .to(this.boxes[3], this.animationPartialsTime, { x: this.windowWidth * 0.125, y: this.windowHeight * 0.06, ease: Back.easeInOut.config(2) }, 3)
+            .to(this.circles[0], this.animationPartialsTime, { x: -this.windowWidth * 0.066, y: -this.windowHeight * 0.05, ease: Back.easeOut.config(1) }, 2.5)
+            .to(this.circles[1], this.animationPartialsTime, { x: -this.windowWidth * 0.205, y: this.windowHeight * 0.07, ease: Back.easeOut.config(1) }, 2.6)
+            .to(this.circles[2], this.animationPartialsTime, { x: -this.windowWidth * 0.320, y: this.windowHeight * 0.19, ease: Back.easeOut.config(1) }, 2.7)
+            .to(this.circles[3], this.animationPartialsTime, { x: -this.windowWidth * 0.061, y: this.windowHeight * 0.11, ease: Back.easeOut.config(1) }, 2.8)
+            .to(this.circles[4], this.animationPartialsTime, { x: -this.windowWidth * 0.203, y: this.windowHeight * 0.23, ease: Back.easeOut.config(1) }, 2.9)
             
-            .to(this.circles[0], this.animationPartialsTime, { x: -this.windowWidth * 0.066, y: -this.windowHeight * 0.05, ease: Back.easeInOut.config(2) }, 3)
-            .to(this.circles[1], this.animationPartialsTime, { x: -this.windowWidth * 0.198, y: this.windowHeight * 0.07, ease: Back.easeInOut.config(2) }, 3)
-            .to(this.circles[2], this.animationPartialsTime, { x: -this.windowWidth * 0.320, y: this.windowHeight * 0.19, ease: Back.easeInOut.config(2) }, 3)
-            .to(this.circles[3], this.animationPartialsTime, { x: -this.windowWidth * 0.066, y: this.windowHeight * 0.11, ease: Back.easeInOut.config(2) }, 3)
-            .to(this.circles[4], this.animationPartialsTime, { x: -this.windowWidth * 0.198, y: this.windowHeight * 0.23, ease: Back.easeInOut.config(2) }, 3)
-            
-            // .to(this.circles[5], this.animationPartialsTime, { x: -this.windowWidth * 0.320, y: this.windowHeight * 0.28, ease: Back.easeInOut.config(2) }, 3)
+            .to(this.circles[5], this.animationPartialsTime / 2, { x: -this.windowWidth * 0.25, y: this.windowHeight * 0.15, ease: Back.easeOut.config(1) }, 2.75)
+            .to(this.circles[5], this.animationPartialsTime/2, { x: this.windowWidth * 0.6, y: -this.windowHeight * 0.17, ease: Back.easeOut.config(0.5) }, 3)
 
-            .to(this.circles[6], this.animationPartialsTime, { x: this.windowWidth * 0.934, y: -this.windowHeight * 0.48, ease: Back.easeInOut.config(2) }, 3)
-            .to(this.circles[7], this.animationPartialsTime, { x: this.windowWidth * 0.802, y: -this.windowHeight * 0.36, ease: Back.easeInOut.config(2) }, 3)
-            .to(this.circles[8], this.animationPartialsTime, { x: this.windowWidth * 0.680, y: -this.windowHeight * 0.24, ease: Back.easeInOut.config(2) }, 3)
+            .to(this.circles[6], this.animationPartialsTime*1.5, { x: this.windowWidth * 0.934, y: -this.windowHeight * 0.48, ease: Back.easeOut.config(1) }, 2.5)
+            .to(this.circles[7], this.animationPartialsTime*1.5, { x: this.windowWidth * 0.798, y: -this.windowHeight * 0.36, ease: Back.easeOut.config(1) }, 2.6)
+            .to(this.circles[8], this.animationPartialsTime*1.5, { x: this.windowWidth * 0.685, y: -this.windowHeight * 0.24, ease: Back.easeOut.config(1) }, 2.7)
 
-            .to(this.wheel, this.animationPartialsTime, { x: this.windowWidth * 0.28, y: this.windowHeight * 0.24, ease: Back.easeInOut.config(2) }, 3)
+            .to(this.wheel, this.animationPartialsTime, { x: this.windowWidth * 0.28, y: this.windowHeight * 0.24, ease: Back.easeOut.config(2) }, 2.8)
             
             
             
@@ -109,7 +112,8 @@ class Cover {
             // .to(this.boxes[1], this.animationPartialsTime, { x: -this.windowWidth * 0.375, y: '50%', rotation: 360, ease: Back.easeInOut.config(2) }, 3.2)
             
 
-        introTimeline.timeScale(0.5);
+        // introTimeline.timeScale(0.2);
+        introTimeline.progress(0.4);
         }
 
     addEventListeners() {
