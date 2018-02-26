@@ -1,0 +1,18 @@
+.style1{
+    #cover{
+        .circle, .box, .wheel{
+            border: 1px solid #1f4c8a;
+            background: rgba(49, 168, 206, 0.5);
+            box-shadow: 10px 10px 30px 0px #000000;
+        }
+        .box{
+            background: linear-gradient(141deg, #a4d4e4, rgba(0, 119, 255, 0.43));
+        }
+        .circle {
+            background: linear-gradient(141deg, #a4d4e4, rgba(6, 130, 139, 0.43));
+        }
+        .wheel{
+            background: linear-gradient(141deg, #a4d4e4, rgba(6, 139, 28, 0.43));
+        }
+    }
+}

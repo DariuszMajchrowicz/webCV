@@ -24,11 +24,13 @@ class Cover {
         this.loadingText2Dots = document.querySelectorAll('#cover .loading-txt2 .dot');
         this.loadingText3Dots = document.querySelectorAll('#cover .loading-txt3 .dot');
         this.loadingText4Dots = document.querySelectorAll('#cover .loading-txt4 .dot');
+        this.loadingText5Dots = document.querySelectorAll('#cover .loading-txt5 .dot');
 
         this.boxes = document.querySelectorAll('#cover .box');
         this.circles = document.querySelectorAll('#cover .circle');
         this.wheel = document.querySelectorAll('#cover .wheel');
 
+        this.navigationBox = document.querySelector('#navigation .hover-box');
     }
 
     intro() {
@@ -64,14 +66,14 @@ class Cover {
             .set(this.loadingText3Dots[1], { opacity: 1 }, 1.4)
             .set(this.loadingText3Dots[2], { opacity: 1 }, 1.5)
 
-
             .to(this.codeMainBoxes[0], this.animationPartialsTime, { y: '-130%', ease: Back.easeIn.config(1) }, 1.4)
             .to(this.codeMainBoxes[1], this.animationPartialsTime, { x: '140%', ease: Back.easeIn.config(1) }, 1.6)
             .to(this.codeMainBoxes[2], this.animationPartialsTime, { y: '-130%', ease: Back.easeIn.config(1) }, 1.8)
 
             .staggerTo(this.boxes, this.animationPartialsTime, { scale: 1, ease: Back.easeOut.config(1) }, 0.225, 1.8)
             .staggerTo(this.circles, this.animationPartialsTime, { scale: 1, ease: Back.easeOut.config(1) }, 0.1, 1.8)
-            .to(this.wheel, this.animationPartialsTime * 2, { scale: 1, ease: Back.easeOut.config(1) }, 2)
+            .to(this.wheel, this.animationPartialsTime * 2, { scale: 1, ease: Back.easeOut.config(3) }, 2)
+            .to(this.navigationBox, this.animationPartialsTime, { y: 0, ease: Back.easeOut.config(1) }, 2)
 
             .set(this.loadingTexts[2], { opacity: 0 }, 1.7)
             .set(this.loadingTexts[3], { opacity: 1 }, 1.7)
@@ -92,28 +94,61 @@ class Cover {
             .to(this.boxes[3], this.animationPartialsTime, { rotation: -5, }, 2.8)
             
             .to(this.circles[0], this.animationPartialsTime, { x: -this.windowWidth * 0.066, y: -this.windowHeight * 0.05, ease: Back.easeOut.config(1) }, 2.5)
-            .to(this.circles[1], this.animationPartialsTime, { x: -this.windowWidth * 0.205, y: this.windowHeight * 0.07, ease: Back.easeOut.config(1) }, 2.6)
+            .to(this.circles[1], this.animationPartialsTime, { x: -this.windowWidth * 0.201, y: this.windowHeight * 0.07, ease: Back.easeOut.config(1) }, 2.6)
             .to(this.circles[2], this.animationPartialsTime, { x: -this.windowWidth * 0.320, y: this.windowHeight * 0.19, ease: Back.easeOut.config(1) }, 2.7)
-            .to(this.circles[3], this.animationPartialsTime, { x: -this.windowWidth * 0.061, y: this.windowHeight * 0.11, ease: Back.easeOut.config(1) }, 2.8)
-            .to(this.circles[4], this.animationPartialsTime, { x: -this.windowWidth * 0.203, y: this.windowHeight * 0.23, ease: Back.easeOut.config(1) }, 2.9)
+            .to(this.circles[3], this.animationPartialsTime, { x: -this.windowWidth * 0.066, y: this.windowHeight * 0.11, ease: Back.easeOut.config(1) }, 2.8)
+            .to(this.circles[4], this.animationPartialsTime, { x: -this.windowWidth * 0.201, y: this.windowHeight * 0.23, ease: Back.easeOut.config(1) }, 2.9)
             
-            .to(this.circles[5], this.animationPartialsTime / 2, { x: -this.windowWidth * 0.25, y: this.windowHeight * 0.15, ease: Back.easeOut.config(1) }, 2.75)
-            .to(this.circles[5], this.animationPartialsTime/2, { x: this.windowWidth * 0.6, y: -this.windowHeight * 0.17, ease: Back.easeOut.config(0.5) }, 3)
+            .to(this.circles[5], this.animationPartialsTime / 2, { x: -this.windowWidth * 0.25, y: this.windowHeight * 0.15, ease: Power4.easeOut }, 2.75)
+            .to(this.circles[5], this.animationPartialsTime / 2, { x: this.windowWidth * 0.6, y: -this.windowHeight * 0.17, ease: Power4.easeOut }, 3.1)
+            .to(this.circles[5], this.animationPartialsTime / 2, { x: -this.windowWidth * 0.2, y: -this.windowHeight * 0.25, ease: Power4.easeOut }, 3.45)
+            .to(this.circles[5], this.animationPartialsTime / 2, { x: this.windowWidth * 0.41, y: -this.windowHeight * 0.55, ease: Power4.easeOut }, 3.8)
+            .to(this.circles[5], this.animationPartialsTime / 4, { x: this.windowWidth * 0.40, y: -this.windowHeight * 0.55, ease: Back.easeInOut.config(5), yoyo: true, repeat: 3 }, 4.2)
+            .to(this.circles[7], this.animationPartialsTime / 2, { x: this.windowWidth * 0.58, y: -this.windowHeight * 0.66, ease: Back.easeOut.config(1) }, 4.4)
+            .to(this.circles[7], this.animationPartialsTime / 2, { x: this.windowWidth * 0.80, y: -this.windowHeight * 0.38, ease: Back.easeOut.config(1) }, 4.75)
+            .to(this.circles[5], this.animationPartialsTime / 2, { x: this.windowWidth * 0.68, y: -this.windowHeight * 0.12, ease: Back.easeInOut.config(1) }, 4.8)
 
             .to(this.circles[6], this.animationPartialsTime*1.5, { x: this.windowWidth * 0.934, y: -this.windowHeight * 0.48, ease: Back.easeOut.config(1) }, 2.5)
-            .to(this.circles[7], this.animationPartialsTime*1.5, { x: this.windowWidth * 0.798, y: -this.windowHeight * 0.36, ease: Back.easeOut.config(1) }, 2.6)
-            .to(this.circles[8], this.animationPartialsTime*1.5, { x: this.windowWidth * 0.685, y: -this.windowHeight * 0.24, ease: Back.easeOut.config(1) }, 2.7)
+            .to(this.circles[7], this.animationPartialsTime*1.5, { x: this.windowWidth * 0.80, y: -this.windowHeight * 0.36, ease: Back.easeOut.config(1) }, 2.6)
+            .to(this.circles[8], this.animationPartialsTime*1.5, { x: this.windowWidth * 0.68, y: -this.windowHeight * 0.24, ease: Back.easeOut.config(1) }, 2.7)
 
             .to(this.wheel, this.animationPartialsTime, { x: this.windowWidth * 0.28, y: this.windowHeight * 0.24, ease: Back.easeOut.config(2) }, 2.8)
             
+            .set(this.loadingTexts[3], { opacity: 0 }, 2.5)
+            .set(this.loadingTexts[4], { opacity: 1 }, 2.5)
+            .set(this.loadingText5Dots[0], { opacity: 1 }, 2.6)
+            .set(this.loadingText5Dots[1], { opacity: 1 }, 2.7)
+            .set(this.loadingText5Dots[2], { opacity: 1 }, 2.8)
+            .set(this.loadingText5Dots, { opacity: 0 }, 2.9)
+            .set(this.loadingText5Dots[0], { opacity: 1 }, 3)
+            .set(this.loadingText5Dots[1], { opacity: 1 }, 3.1)
+            .set(this.loadingText5Dots[2], { opacity: 1 }, 3.2)
+            .set(this.loadingText5Dots, { opacity: 0 }, 3.3)
+            .set(this.loadingText5Dots[0], { opacity: 1 }, 3.4)
+            .set(this.loadingText5Dots[1], { opacity: 1 }, 3.5)
+            .set(this.loadingText5Dots[2], { opacity: 1 }, 3.6)
+            .set(this.loadingText5Dots, { opacity: 0 }, 3.7)
+            .set(this.loadingText5Dots[0], { opacity: 1 }, 3.8)
+            .set(this.loadingText5Dots[1], { opacity: 1 }, 3.9)
+            .set(this.loadingText5Dots[2], { opacity: 1 }, 4)
+            .set(this.loadingText5Dots, { opacity: 0 }, 4.1)
+            .set(this.loadingText5Dots[0], { opacity: 1 }, 4.2)
+            .set(this.loadingText5Dots[1], { opacity: 1 }, 4.3)
+            .set(this.loadingText5Dots[2], { opacity: 1 }, 4.4)
+            .set(this.loadingText5Dots, { opacity: 0 }, 4.5)
+            .set(this.loadingText5Dots[0], { opacity: 1 }, 4.6)
+            .set(this.loadingText5Dots[1], { opacity: 1 }, 4.7)
+            .set(this.loadingText5Dots[2], { opacity: 1 }, 4.8)
+            .set(this.loadingText5Dots, { opacity: 0 }, 4.9)
+            .set(this.loadingText5Dots[0], { opacity: 1 }, 5)
+            .set(this.loadingText5Dots[1], { opacity: 1 }, 5.1)
+            .set(this.loadingText5Dots[2], { opacity: 1 }, 5.2)
+            .set(this.loadingTexts[4], { opacity: 0 }, 5.3)
+            .set(this.loadingTexts[5], { opacity: 1 }, 5.3)
             
-            
-            // .to(this.boxes[0], this.animationPartialsTime / 2, { rotation: 20, yoyo: true, repeat: 1, ease: Back.easeInOut.config(2) }, 3)
-            // .to(this.boxes[1], this.animationPartialsTime, { x: -this.windowWidth * 0.375, y: '50%', rotation: 360, ease: Back.easeInOut.config(2) }, 3.2)
-            
-
-        // introTimeline.timeScale(0.2);
-        introTimeline.progress(0.4);
+        // introTimeline.timeScale(0.5);
+        // introTimeline.timeScale(5);
+        // introTimeline.progress(0.3);
         }
 
     addEventListeners() {

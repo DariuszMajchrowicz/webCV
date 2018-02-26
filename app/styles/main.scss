@@ -3,7 +3,7 @@ $icon-font-path: "../fonts/";
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700,900&subset=latin-ext");
 
 // $mainColor: #0099ff;
-$mainColor: #193697;
+$mainColor: #b9caff;
 // $mainColor: #dddddd;
 
 body {
@@ -19,7 +19,6 @@ section{
   position: absolute;
   top: 50%;
   width: 110%;
-  height: 100%;
   overflow: hidden;
   color: rgba(0, 0, 0, 0.1);
   font-weight: 900;
@@ -47,6 +46,7 @@ section{
 
 @import "_test.scss";
 
+@import "style1.scss";
 
 
 body::-webkit-scrollbar {

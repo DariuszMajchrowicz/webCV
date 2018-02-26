@@ -9,11 +9,12 @@
   .hover-box{
     transition-duration: 0.35s;
       position: absolute;
-      width: 100%;
+      width: 80%;
       height: 100%;
       top: 0;
-      left: 0;
-      transform: translateY(-80%);
+      left: 10%;
+      // transform: translateY(-180%);
+      transform: translateY(-100%);
     }
     &:hover .hover-box{ transform: translateY(0%); }
     a, span{
@@ -24,15 +25,16 @@
         text-align: center;
         width: 15%;
         cursor: pointer;
+        padding-bottom: 5px;
     }
   .flex-box{
     position: absolute;
     top: 0;
-    left: 10%;
+    left: 8%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 80%;
+    width: 84%;
     height: 100%;
 
   }
