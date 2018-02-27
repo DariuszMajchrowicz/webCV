@@ -4,20 +4,20 @@
   height: 100vh;
   min-height: 600px;  
   margin-bottom: 0;
-  background: #222;
+  background: #1d1d1d;
   overflow: hidden;
 //   background: linear-gradient(155deg, #000000 0%, #131313 51%, #000000);
     .section-desc{
         text-align: center;
         width: 100%;
         left: 0;
-        color: rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.05);
         font-size: 65vh;
-        text-shadow:
-            -5px -5px 0 #000,
-            5px -5px 0 #000,
-            -5px 5px 0 #000,
-            5px 5px 0 #000;
+        // text-shadow:
+        //     -5px -5px 0 #000,
+        //     5px -5px 0 #000,
+        //     -5px 5px 0 #000,
+        //     5px 5px 0 #000;
     }
     .code-main-block{
         position: absolute;

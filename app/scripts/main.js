@@ -7,14 +7,22 @@ document.onreadystatechange = () => {
     const boxes = new Boxes();
     const skills = new Skills();
     const wheel = new Wheel();
+    const navigation = new Navigation();
 
     cover.init();
     boxes.init();
     skills.init();
     wheel.init();
-
-    addSmothScrollToNav();
-
+    navigation.init();
 
   }
 };
+
+window.requestAnimFrame = (function () {
+  return window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    function (callback) {
+      window.setTimeout(callback, 1000 / 60);
+    };
+})();

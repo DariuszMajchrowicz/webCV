@@ -113,6 +113,7 @@ class Wheel {
     this.ctx.stroke();
 
     this.step = (Date.now() - this.startTime) / this.timeoutTime;
+    
     if (this.step >= 1.01) {
       cancelAnimationFrame(this.rAF);
       return;

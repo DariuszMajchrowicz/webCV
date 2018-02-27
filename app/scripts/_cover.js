@@ -73,7 +73,7 @@ class Cover {
             .staggerTo(this.boxes, this.animationPartialsTime, { scale: 1, ease: Back.easeOut.config(1) }, 0.225, 1.8)
             .staggerTo(this.circles, this.animationPartialsTime, { scale: 1, ease: Back.easeOut.config(1) }, 0.1, 1.8)
             .to(this.wheel, this.animationPartialsTime * 2, { scale: 1, ease: Back.easeOut.config(3) }, 2)
-            .to(this.navigationBox, this.animationPartialsTime, { y: 0, ease: Back.easeOut.config(1) }, 2)
+            .to(this.navigationBox, this.animationPartialsTime, { y: 0 }, 2.7)
 
             .set(this.loadingTexts[2], { opacity: 0 }, 1.7)
             .set(this.loadingTexts[3], { opacity: 1 }, 1.7)
@@ -146,9 +146,9 @@ class Cover {
             .set(this.loadingTexts[4], { opacity: 0 }, 5.3)
             .set(this.loadingTexts[5], { opacity: 1 }, 5.3)
             
-        // introTimeline.timeScale(0.5);
+        // introTimeline.timeScale(0.75);
         // introTimeline.timeScale(5);
-        // introTimeline.progress(0.3);
+        introTimeline.progress(1);
         }
 
     addEventListeners() {
