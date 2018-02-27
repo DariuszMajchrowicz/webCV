@@ -1,11 +1,12 @@
 #cover {
-  position: fixed;
+  position: relative;
   width: 100%;
   height: 100vh;
   min-height: 600px;  
   margin-bottom: 0;
-  background: #123456;
+  background: #666;
   overflow: hidden;
+  background: linear-gradient(155deg, #000000 0%, #131313 51%, #000000);
 
     .code-main-block{
         position: absolute;
@@ -14,24 +15,18 @@
         border-top: 30px solid #dad9da;
         padding: 1px;
         box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
-        opacity: 0.9;
+        // opacity: 0.95;
+        opacity: 1;
         background: #1E1E1E;
+        
+        // display: none;
         .code-block{
             position: absolute;
             width: 100%;
-            height: 100%;
+            height: 99%;
             overflow: hidden;
         }
-        &:hover{
-            z-index: 1;
-            opacity: 1;
-            pre{
-                transform: translateY(-95%);
-            }
-        }
         pre{
-            transition-duration: 2s;
-            transition-timing-function: linear;
             white-space: pre-wrap;
             margin: -10px 5px;
             overflow: hidden;
@@ -50,19 +45,22 @@
             height: 20px;
             display: flex;
             .red, .yellow, .green{
-                width: 17px;
-                height: 17px;
+                width: 15px;
+                height: 15px;
                 border-radius: 50%;
             }
             .red{
+                border: 1px solid #e74640;
                 background: #fc605c;
                 margin-right: 10px;
             }
             .yellow{
+                border: 1px solid #f2a500;
                 background: #fdbc40;
                 margin-right: 10px;
             }
             .green{
+                border: 1px solid #1ca251;
                 background: #35ca4a;
             }
         }
@@ -72,17 +70,90 @@
         left: 1%;
         width: 37%;
         height: 70%;
+        transform: translateX(-120%);
     };
     .cb2{ 
-        top: 22%;
+        top: 20%;
         left: 45%;
         width: 43%;
         height: 70%;
+        transform: translateX(140%);
     };
     .cb3{ 
         top: 3%;
         right: 1%;
         width: 40%;
         height: 60%;
+        transform: translateY(-120%);
     };
+
+    .loading-box{
+        position: absolute;
+        width : 400px;
+        height : 250px;
+        top: calc(50% - 125px);
+        left: calc(50% - 200px);
+        border-radius: 10px;
+        z-index: 2;
+        overflow: hidden;
+
+        background: rgba(0, 0, 0, 0.95);
+        transform: scale(0);
+        .loading-txt-wrapper{
+            width: 100%;
+            height: 100%;
+            color: #fff;
+            text-align: center;
+            .loading-txt{
+                position: absolute;
+                width: 100%;
+                top: 165px;
+                opacity: 0;
+                .dot{ opacity: 0; }
+            }
+            // .loading-txt1{ opacity: 1; }
+            
+        }
+        .circle-ornament{
+            $size: 100px;
+            $fcSize: $size * 0.33;
+            $animationTime: 2s;
+
+            position: absolute;
+            top: 0%;
+            left: 50%;
+            width: $size;
+            height: $size;
+            border-radius: 50%;
+            border: 1px solid #0099ff;
+            transform: translate(-50%, 40%);
+            // background: $mainColor;
+            box-shadow: 0px 15px 30px 0px rgba(0, 0, 0, 0.31);
+            .floating-circle{
+                position: absolute;
+                top: - $fcSize / 2;
+                left: calc(50% - #{$fcSize / 2});
+                width: $fcSize;
+                height: $fcSize;
+                border-radius: 50%;
+                transform-origin: 0.5*$fcSize 0.5*($fcSize + $size);
+
+                background: #111;
+                border: 1px solid #0099ff;
+
+                animation-duration: $animationTime;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }
+            .fc2{ animation-delay: $animationTime * 1/5; }
+            .fc3{ animation-delay: $animationTime * 2/5; }
+            .fc4{ animation-delay: $animationTime * 3/5; }
+            .fc5{ animation-delay: $animationTime * 4/5; }
+        }
+        .animation-FC .floating-circle{
+            animation-name: rotateFC;
+        }
+        @keyframes rotateFC { 100% {transform: rotate(360deg);} }
+    }
+
 }

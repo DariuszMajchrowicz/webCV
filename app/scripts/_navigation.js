@@ -1,4 +1,7 @@
 function addSmothScrollToNav(){
+
+    const mainWrapper = document.querySelector('#main-wrapper');
+
     const buttons = [
         document.querySelector('#about-nav-btn'),
         document.querySelector('#skills-nav-btn'),
@@ -17,21 +20,10 @@ function addSmothScrollToNav(){
 
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener('mousedown', ()=>{
-            console.log('smoth' + i);
             scrollToY(sections[i].offsetTop, 500, 'easeInOutQuint');
         })
     }
 }
-// first add raf shim
-// http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
-window.requestAnimFrame = (function () {
-    return window.requestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        function (callback) {
-            window.setTimeout(callback, 1000 / 60);
-        };
-})();
 
 // main function
 function scrollToY(scrollTargetY, speed, easing) {
@@ -85,3 +77,16 @@ function scrollToY(scrollTargetY, speed, easing) {
 }
 
 // scroll it!
+
+
+
+// first add raf shim
+// http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
+window.requestAnimFrame = (function () {
+    return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        function (callback) {
+            window.setTimeout(callback, 1000 / 60);
+        };
+})();
