@@ -3,7 +3,8 @@ console.log('Nav is loaded');
 
 class Navigation {
     constructor() {
-        // == Setings ==
+
+        // == Variables ==
         this.currentTime = 0;
         this.time = 0;
         this.scrollY = document.documentElement.scrollTop;
@@ -11,7 +12,6 @@ class Navigation {
         this.speed = 2000;
         this.easing = 'easeOutSine';
 
-        // == Variables ==
         this.windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         this.windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         this.documentHeight = Math.max(
@@ -19,6 +19,10 @@ class Navigation {
             document.body.offsetHeight, document.documentElement.offsetHeight,
             document.body.clientHeight, document.documentElement.clientHeight
         );
+
+        this.scrollCircleIsClicked = false;
+        this.circleProgress = 0;
+
 
         // == Elements ==
         this.mainWrapper = document.querySelector('#main-wrapper');
@@ -76,6 +80,19 @@ class Navigation {
         window.addEventListener('scroll', ()=>{
             this.setProgressLine();
         });
+
+        this.navCircle.addEventListener('mousedown', ()=>{
+            this.scrollCircleIsClicked = true;    
+        })
+
+        window.addEventListener('mouseup', () => {
+            this.scrollCircleIsClicked = false;
+            this.setProgressLine();
+        })
+
+        window.addEventListener('mousemove', (event)=>{
+            this.movePageWithScrollCircle(event)
+        })
     }
 
     scrollToY(scrollTargetY, speed, easing) {
@@ -114,11 +131,23 @@ class Navigation {
     }
 
     setProgressLine(){
-        let progressInPercent = (window.scrollY) / (this.documentHeight - this.windowHeight * 0.5); 
-        let progress = progressInPercent * this.navWrapper.getBoundingClientRect().width;
+        // let progressInPercent = (window.scrollY) / (this.documentHeight - this.windowHeight * 0.5); 
+        // let progress = progressInPercent * this.navWrapper.getBoundingClientRect().width;
 
-        this.navProgressLine.style.width = progress + 'px';
-        TweenMax.set(this.navCircle, { x: progress });
+        // this.navProgressLine.style.width = progress + 'px';
+        // TweenMax.set(this.navCircle, { x: progress });
+    }
+
+    movePageWithScrollCircle(event){
+        if ( !this.scrollCircleIsClicked ) { return }
+        // let progressInPercent = (window.scrollY) / (this.documentHeight - this.windowHeight * 0.5); 
+        
+        console.log(event.clientX)
+        console.log(this.navCircle.getBoundingClientRect().left)
+
+        this.circleProgress = event.clientX - this.navCircle.getBoundingClientRect().left;
+        TweenMax.set(this.navCircle, { x: this.circleProgress });
+        
     }
 
     init() {
