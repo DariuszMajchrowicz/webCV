@@ -21,7 +21,7 @@ class Navigation {
         );
 
         this.scrollCircleIsClicked = false;
-        this.circleProgress = 0;
+        this.circleProgresCorrection = document.querySelector('#navigation .circle').getBoundingClientRect().left + 14;
 
 
         // == Elements ==
@@ -131,22 +131,24 @@ class Navigation {
     }
 
     setProgressLine(){
-        // let progressInPercent = (window.scrollY) / (this.documentHeight - this.windowHeight * 0.5); 
-        // let progress = progressInPercent * this.navWrapper.getBoundingClientRect().width;
+        let progressInPercent = (window.scrollY) / (this.documentHeight - this.windowHeight); 
+        let progress = progressInPercent * this.navWrapper.getBoundingClientRect().width;
 
-        // this.navProgressLine.style.width = progress + 'px';
-        // TweenMax.set(this.navCircle, { x: progress });
+        this.navProgressLine.style.width = progress + 'px';
+        TweenMax.set(this.navCircle, { x: progress });
     }
 
     movePageWithScrollCircle(event){
-        if ( !this.scrollCircleIsClicked ) { return }
-        // let progressInPercent = (window.scrollY) / (this.documentHeight - this.windowHeight * 0.5); 
-        
-        console.log(event.clientX)
-        console.log(this.navCircle.getBoundingClientRect().left)
+        if ( !this.scrollCircleIsClicked ) { return; }
+        let circlePosition = event.clientX - this.circleProgresCorrection;
+        let wrapperWidth = this.navWrapper.getBoundingClientRect().width;
+        if (circlePosition < 0 || circlePosition > wrapperWidth) { return; }
 
-        this.circleProgress = event.clientX - this.navCircle.getBoundingClientRect().left;
-        TweenMax.set(this.navCircle, { x: this.circleProgress });
+        TweenMax.set(this.navCircle, { x: circlePosition });
+
+        let scrollPosition = (this.documentHeight - this.windowHeight) * circlePosition/wrapperWidth;
+        console.log(scrollPosition)
+        window.scrollTo(0, scrollPosition);
         
     }
 

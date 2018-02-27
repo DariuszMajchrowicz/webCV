@@ -83,7 +83,7 @@
   }
   .circle{
     position: absolute;
-    left: 8%;
+    left: calc(8% - 14px);
     bottom: -14px;
     width: 24px;
     height: 24px;
