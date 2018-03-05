@@ -130,8 +130,8 @@ class Skills {
     TweenMax.to(this.skills[7], this.introTime, { x: '-100%', y: '-200%', ease: Back.easeOut.config(1), delay: 0.5 });
     TweenMax.to(this.skills[7], 0.1, { x: -10, ease: Back.easeOut.config(5), delay: 0.5 + this.introTime, yoyo: true, repeat: 3 });
     TweenMax.to(this.skills[8], this.introTime / 2, { x: '-150%', y: '-180%', ease: Back.easeOut.config(1), delay: 0.7 + this.introTime, onComplete: ()=>{
-      TweenMax.to(this.skills[8], this.introTime, { x: '0%', y: '0%', ease: Back.easeOut.config(1) });
-      TweenMax.to(this.skills[7], this.introTime, { x: '0%', y: '0%', ease: Back.easeOut.config(1), delay: 0.2 });
+      TweenMax.to(this.skills[8], this.introTime / 3, { x: '0%', y: '0%', ease: Back.easeOut.config(1) });
+      TweenMax.to(this.skills[7], this.introTime / 3, { x: '0%', y: '0%', ease: Back.easeOut.config(1), delay: 0.1 });
     } });
   
   } 

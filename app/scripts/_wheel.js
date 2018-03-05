@@ -7,7 +7,7 @@ class Wheel {
     // == Setings ==
     this.timeoutTime = 10000;
     this.animationTime = 0.7;
-    this.introTime = 1;
+    this.introTime = 0.7 ;
 
     // == Variables ==
     this.isStoped = false;
@@ -158,12 +158,13 @@ class Wheel {
   intro() {
     console.log('%c log', 'color: #bada55; font-size: 120%; font-weight: 700 ');
 
-    TweenMax.to(this.outerCircle, this.introTime * 0.9, {rotation: -360});
-    TweenMax.to(this.fullWheel, this.introTime, { x: 0, ease: Back.easeOut.config(0.7), onComplete: ()=>{
+    TweenMax.fromTo(this.outerCircle, this.introTime * 0.9, { rotation: -60 }, { rotation: -360 });
+    TweenMax.to(this.fullWheel, this.introTime, { x: 0, ease: Back.easeOut.config(0.7)});
+    setTimeout(()=>{
       TweenMax.set(this.outerCircle, { rotation: 360 });
       this.circleRotate(0);
       this.addEventListeners();
-    } });
+    }, this.introTime * 0.9 * 1000)
     
   }
 
