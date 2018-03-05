@@ -11,9 +11,11 @@ body {
   background: $mainColor;
   margin: 0;
   padding: 0;
+  user-select: none;
+  overflow-x: hidden;
 }
 section{
-  margin-bottom: 120px;
+  margin-bottom: 60px;
 }
 .section-desc {
   position: absolute;

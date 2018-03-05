@@ -5,11 +5,12 @@ class Boxes {
   constructor() {
     // == Setings ==
     this.animationTime = 0.5;
-    this.introTime = 0.5;
+    this.introTime = 1;
 
     // == Variables ==
     this.openedBoxArray = [];
-    this.windowWidth = window.innerWidth;
+    this.windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    this.windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
     // == Elements ==
     this.boxes = document.querySelectorAll('#boxes .box');
@@ -23,17 +24,6 @@ class Boxes {
 
     this.mainTitles = document.querySelectorAll('#boxes .box .main-title');
     this.closeBtns = document.querySelectorAll('#boxes .box .close-box-btn');
-  }
-
-  intro(){
-
-
-    TweenMax.from(this.boxes[0], this.introTime, { x: this.windowWidth, delay: this.introTime * 0 });
-    TweenMax.from(this.boxes[1], this.introTime, { x: -this.windowWidth, delay: this.introTime * 0.1 });
-    TweenMax.from(this.boxes[2], this.introTime, { x: this.windowWidth, delay: this.introTime * 0.2 });
-    TweenMax.from(this.boxes[3], this.introTime, { x: -this.windowWidth, delay: this.introTime * 0.3 });
-
-    
   }
 
   addEventListeners() {
@@ -84,8 +74,21 @@ class Boxes {
 
   }
 
+  intro() {
+    TweenMax.to(this.boxes[0], this.introTime, { x: 0, y: '0%', rotation: 360, ease: Back.easeOut.config(2) });
+    TweenMax.to(this.boxes[1], this.introTime, { x: 0, y: '0%', delay: 0.1, ease: Back.easeOut.config(2) });
+    TweenMax.to(this.boxes[2], this.introTime, { x: 0, y: '0%', delay: 0.2, ease: Back.easeOut.config(2) });
+    TweenMax.to(this.boxes[3], this.introTime * 2, { y: '0%', ease: Back.easeOut.config(2) });
+    TweenMax.to(this.boxes[3], this.introTime * 2, { x: 0, ease: Back.easeOut.config(1)});
+
+  }
+
   init() {
-    // this.intro();
     this.addEventListeners();
+    TweenMax.set(this.boxes[0], { x: -this.windowWidth * 0.5, y: '-30%' });
+    TweenMax.set(this.boxes[1], { x: this.windowWidth * 0.5, y: '-30%' });
+    TweenMax.set(this.boxes[2], { x: -this.windowWidth * 0.5, y: '30%' });
+    TweenMax.set(this.boxes[3], { x: this.windowWidth * 0.5, y: '30%' });
+    
   }
 }

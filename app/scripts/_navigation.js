@@ -2,9 +2,15 @@
 console.log('Nav is loaded');
 
 class Navigation {
-    constructor() {
+    constructor(classes) {
+        this.cover = classes.cover;
+        this.boxes = classes.boxes;
+        this.skills = classes.skills;
+        this.wheel = classes.wheel;
 
         // == Variables ==
+        this.introIsLoaded = [false, false, false];
+
         this.currentTime = 0;
         this.time = 0;
         this.scrollY = document.documentElement.scrollTop;
@@ -23,11 +29,9 @@ class Navigation {
         this.scrollCircleIsClicked = false;
         this.circleProgresCorrection = document.querySelector('#navigation .circle').getBoundingClientRect().left + 14;
 
-
         // == Elements ==
         this.mainWrapper = document.querySelector('#main-wrapper');
         this.buttons = [
-            document.querySelector('#home-nav-btn'),
             document.querySelector('#about-nav-btn'),
             document.querySelector('#skills-nav-btn'),
             document.querySelector('#boxes-nav-btn'),
@@ -35,7 +39,6 @@ class Navigation {
             document.querySelector('#footer-nav-btn')
         ]
         this.sections = [
-            document.querySelector('#cover'),
             document.querySelector('#about'),
             document.querySelector('#skills'),
             document.querySelector('#boxes'),
@@ -48,6 +51,7 @@ class Navigation {
         this.navWrapper = document.querySelector('#navigation .nav-wrapper');
         this.navProgressLine = document.querySelector('#navigation .progress-line');
         this.navCircle = document.querySelector('#navigation .circle');
+        this.telepotLine = document.querySelector('#navigation .teleport-line');
 
         // == Easing equations from https://github.com/danro/easing-js/blob/master/easing.js ==
         this.easingEquations = {
@@ -68,21 +72,50 @@ class Navigation {
 
     addEventListeners() {
         this.nav.addEventListener('mouseover', () => {
-            TweenMax.to(this.navHover, 0.35, { y: 0 });
+            if (window.coverStage) { return; }
+            TweenMax.to(this.navHover, 0.35, { y: '0%' });
+        })
+
+        this.nav.addEventListener('mouseout', () => {
+            if (window.coverStage) { return; }
+            TweenMax.to(this.navHover, 0.35, { y: '-80%'});
         })
 
         for (let i = 0; i < this.buttons.length; i++) {
             this.buttons[i].addEventListener('mousedown', () => {
+                if (window.coverStage) {
+                    this.cover.outro(()=>{
+                        this.scrollToY(this.sections[i].offsetTop, 500, 'easeInOutQuint');
+                    });
+                    return;
+                }
                 this.scrollToY(this.sections[i].offsetTop, 500, 'easeInOutQuint');
             })
         }
 
         window.addEventListener('scroll', ()=>{
+            if ( window.coverStage ) { window.scrollTo(0,0); }
             this.setProgressLine();
+
+            if (!this.introIsLoaded[0] && document.documentElement.scrollTop + this.windowHeight * 0.5 > this.sections[1].offsetTop) { 
+                this.skills.intro();
+                this.introIsLoaded[0] = true;
+            }
+            
+            if (!this.introIsLoaded[1] && document.documentElement.scrollTop + this.windowHeight * 0.5 > this.sections[2].offsetTop) { 
+                this.boxes.intro();
+                this.introIsLoaded[1] = true;
+            }
+            
+            if (!this.introIsLoaded[2] && document.documentElement.scrollTop + this.windowHeight * 0.5 > this.sections[3].offsetTop) { 
+                this.wheel.intro();
+                this.introIsLoaded[2] = true;
+            }
+
         });
 
         this.navCircle.addEventListener('mousedown', ()=>{
-            this.scrollCircleIsClicked = true;    
+            this.scrollCircleIsClicked = true;
         })
 
         window.addEventListener('mouseup', () => {
@@ -91,7 +124,19 @@ class Navigation {
         })
 
         window.addEventListener('mousemove', (event)=>{
-            this.movePageWithScrollCircle(event)
+            if (!this.scrollCircleIsClicked) { return; }
+            if (window.coverStage) { return; }
+            this.movePageWithScrollCircle(event);
+        })
+
+        this.telepotLine.addEventListener('mousedown', (event) => {
+            if (window.coverStage) {
+                this.cover.outro(() => {
+                    this.scrollAfterClickOnLine(event);
+                });
+                return;
+            }
+            this.scrollAfterClickOnLine(event);
         })
     }
 
@@ -139,7 +184,6 @@ class Navigation {
     }
 
     movePageWithScrollCircle(event){
-        if ( !this.scrollCircleIsClicked ) { return; }
         let circlePosition = event.clientX - this.circleProgresCorrection;
         let wrapperWidth = this.navWrapper.getBoundingClientRect().width;
         if (circlePosition < 0 || circlePosition > wrapperWidth) { return; }
@@ -147,9 +191,15 @@ class Navigation {
         TweenMax.set(this.navCircle, { x: circlePosition });
 
         let scrollPosition = (this.documentHeight - this.windowHeight) * circlePosition/wrapperWidth;
-        console.log(scrollPosition)
         window.scrollTo(0, scrollPosition);
-        
+    }
+
+    scrollAfterClickOnLine(event) {
+        let clickedPositions = event.clientX - this.circleProgresCorrection;
+        let wrapperWidth = this.navWrapper.getBoundingClientRect().width;
+
+        let scrollPosition = (this.documentHeight - this.windowHeight) * clickedPositions / wrapperWidth;
+        this.scrollToY(scrollPosition, 500, 'easeInOutQuint');
     }
 
     init() {

@@ -7,14 +7,23 @@ class Cover {
         this.animationPartialsTime = 0.5;
         this.codeTime = 4;
         this.introTime = 0.5;
+        window.coverStage = true;
 
         // == Variables ==
+        this.outroIsPlayed = false;
+        this.introTimeline = null;
         this.openedBoxArray = [];
         this.windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         this.windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
         // == Elements ==
+        this.cover = document.querySelector('#cover');
+        this.coverBg = document.querySelector('#cover .bg');
         this.loadingBox = document.querySelector('#cover .loading-box');
+        this.skipBox = document.querySelector('#cover .skip');
+        this.skipIcon = document.querySelector('#cover .skip .scroll-icon');
+        this.skipText = document.querySelector('#cover .skip .text-box');
+        this.skipTextDots = document.querySelectorAll('#cover .skip .text-box .dot');
         this.circleOrnament = document.querySelector('#cover .circle-ornament');
 
         this.codeMainBoxes = document.querySelectorAll('#cover .code-main-block');
@@ -31,14 +40,18 @@ class Cover {
         this.wheel = document.querySelectorAll('#cover .wheel');
 
         this.navigationBox = document.querySelector('#navigation .hover-box');
+        this.navigationCircle = document.querySelector('#navigation .circle');
+
+        this.outroLeft = document.querySelectorAll('#cover .left');
+        this.outroRight = document.querySelectorAll('#cover .right');
     }
 
     intro() {
-        var introTimeline = new TimelineLite({
+       this.introTimeline = new TimelineMax({
             delay: 0.5
         });
 
-        introTimeline.to(this.loadingBox, this.animationPartialsTime, {
+        this.introTimeline.to(this.loadingBox, this.animationPartialsTime, {
             scale: 1, ease: Back.easeOut.config(1.7), onComplete: () => {
                 this.circleOrnament.classList.add('animation-FC');
             }
@@ -57,6 +70,13 @@ class Cover {
             .set(this.loadingText2Dots[0], { opacity: 1 }, 0.9)
             .set(this.loadingText2Dots[1], { opacity: 1 }, 1.0)
             .set(this.loadingText2Dots[2], { opacity: 1 }, 1.1)
+
+            .to(this.skipBox, this.animationPartialsTime / 2, { y: '0%', ease: Power2.easeOut }, 0.4)
+            .to(this.skipIcon, this.animationPartialsTime / 2, { scale: 1, ease: Back.easeOut.config(2) }, 0.6)
+            .to(this.skipText, this.animationPartialsTime / 2, { opacity: 1}, 0.8)
+            .set(this.skipTextDots[0], { opacity: 1}, 0.9)
+            .set(this.skipTextDots[1], { opacity: 1}, 1)
+            .set(this.skipTextDots[2], { opacity: 1}, 1.1)
 
             .to(this.codeMainBoxes[2], this.animationPartialsTime, { y: '0%', ease: Back.easeOut.config(2) }, 1.2)
             .to(this.codeBoxes[2], this.codeTime, { y: '-95%', ease: Power0.easeNone }, 1.2)
@@ -144,18 +164,57 @@ class Cover {
             .set(this.loadingText5Dots[1], { opacity: 1 }, 5.1)
             .set(this.loadingText5Dots[2], { opacity: 1 }, 5.2)
             .set(this.loadingTexts[4], { opacity: 0 }, 5.3)
-            .set(this.loadingTexts[5], { opacity: 1 }, 5.3)
+            .set(this.loadingTexts[5], { opacity: 1 }, 5.3);
             
-        // introTimeline.timeScale(0.75);
-        // introTimeline.timeScale(5);
-        introTimeline.progress(1);
+        // this.introTimeline.timeScale(0.4);
+        // this.introTimeline.timeScale(5);
+        // this.introTimeline.progress(1);
         }
 
-    addEventListeners() {
+    outro(callback) {
+        if (this.outroIsPlayed) { return; }
+        this.outroIsPlayed = true;
+        this.introTimeline.pause();  
+        if (this.introTimeline.progress() < 0.45) {
+            TweenMax.to(this.codeMainBoxes[0], this.animationPartialsTime, { y: '-130%', ease: Back.easeIn.config(1) });
+            TweenMax.to(this.codeMainBoxes[1], this.animationPartialsTime, { x: '140%', ease: Back.easeIn.config(1) });
+            TweenMax.to(this.codeMainBoxes[2], this.animationPartialsTime, { y: '-130%', ease: Back.easeIn.config(1) });
+        }
+        if (this.introTimeline.progress() >= 0.35 && this.introTimeline.progress() < 1) {
+            TweenMax.staggerTo(this.outroLeft, this.animationPartialsTime, { x: -this.windowWidth });
+            TweenMax.staggerTo(this.outroRight, this.animationPartialsTime, { x: this.windowWidth });
+        }
+        if (this.introTimeline.progress() >= 1) {
+            TweenMax.staggerTo(this.outroLeft, this.animationPartialsTime, { x: '-=300' });
+            TweenMax.staggerTo(this.outroRight, this.animationPartialsTime, { x: '+=300' });
+        }
+        TweenMax.to(this.skipBox, this.animationPartialsTime * 2, { y: '150%'});
+        TweenMax.to(this.loadingBox, this.animationPartialsTime, { scale: 0 });
+        TweenMax.to(this.loadingBox, this.animationPartialsTime, { scale: 0 });
+        TweenMax.to(this.navigationBox, 0.35, { y: '-80%' });
+        TweenMax.to(this.navigationCircle, 0.35, { opacity: 1 });
+        
+        TweenMax.to(this.coverBg, this.animationPartialsTime * 2, { y: -120 + '%'});
+        setTimeout(()=>{
+            window.coverStage = false;
+            if (callback) { callback(); }
+        }, 300)
 
     }
 
+    addEventListeners(){
+        onWheelAndSimilar((event)=>{
+            if (!window.coverStage) { return; }
+            preventDefault(event);
+            this.outro();
+        })
+    }
+
     init() {
+        window.scrollTo(0, 0);
         this.intro();
+        setTimeout(()=>{
+            this.addEventListeners();
+        }, 500);
     }
 }

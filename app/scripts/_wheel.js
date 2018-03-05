@@ -5,16 +5,20 @@ class Wheel {
   constructor() {
 
     // == Setings ==
-    this.timeoutTime = 2000;
+    this.timeoutTime = 10000;
     this.animationTime = 0.7;
+    this.introTime = 1;
 
     // == Variables ==
     this.isStoped = false;
     this.canSpin = true;
     this.currentCircle = 0;
     this.currentAngle = 0;
+    this.windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
     // == Elements ==
+
+    this.fullWheel = document.querySelector('#wheel .full-wheel');
     this.smallCirles = document.querySelectorAll('#wheel .wheel-circle');
     this.innerCirle = document.querySelector('#wheel .inner-circle');
     this.innerCirleIcons = document.querySelectorAll('#wheel .inner-circle span');
@@ -151,9 +155,20 @@ class Wheel {
     this.drawCanvasCounter();
   }
 
+  intro() {
+    console.log('%c log', 'color: #bada55; font-size: 120%; font-weight: 700 ');
+
+    TweenMax.to(this.outerCircle, this.introTime * 0.9, {rotation: -360});
+    TweenMax.to(this.fullWheel, this.introTime, { x: 0, ease: Back.easeOut.config(0.7), onComplete: ()=>{
+      TweenMax.set(this.outerCircle, { rotation: 360 });
+      this.circleRotate(0);
+      this.addEventListeners();
+    } });
+    
+  }
+
 
   init() {
-    this.addEventListeners();
-    this.circleRotate(0);
+    TweenMax.set(this.fullWheel, { x: this.windowWidth});
   }
 }

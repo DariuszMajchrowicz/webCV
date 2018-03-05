@@ -1,12 +1,20 @@
 #cover {
-  position: relative;
+  position: fixed;
   width: 100%;
   height: 100vh;
   min-height: 600px;  
   margin-bottom: 0;
-  background: #1d1d1d;
   overflow: hidden;
-//   background: linear-gradient(155deg, #000000 0%, #131313 51%, #000000);
+  pointer-events: none;
+  //   background: linear-gradient(155deg, #000000 0%, #131313 51%, #000000);
+  z-index: 1;
+  .bg{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #1d1d1d;
+      box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.5);
+  }
     .section-desc{
         text-align: center;
         width: 100%;
@@ -168,6 +176,7 @@
     }
     .elements-wrapper{
         $scale: 0.65;
+        $scale: 1;
         position: absolute;
         width: 100%;
         height: 100%;
@@ -186,6 +195,7 @@
             width: 120px * $scale;
             height: 120px * $scale;
             border-radius: 50%;
+            z-index: 1;
             &.circle1 { left: calc(6.6% - #{60px * $scale}); top: calc(50.1% - #{60px * $scale});}
             &.circle2 { left: calc(19.8% - #{60px * $scale}); top: calc(50.1% - #{60px * $scale});}
             &.circle3 { left: calc(32% - #{60px * $scale}); top: calc(50.1% - #{60px * $scale});}
@@ -202,6 +212,7 @@
             height: 250px * $scale;
             border-radius: 10px * $scale;
             top: calc(20.5% - #{125px * $scale});
+            z-index: 1;
             &.box1 { left: calc(12.5% - #{200px * $scale})}
             &.box2 { left: calc(37.5% - #{200px * $scale})}
             &.box3 { left: calc(62.5% - #{200px * $scale})}
@@ -214,6 +225,104 @@
             border-radius: 50%;
             left: calc(69.8% - #{250px * $scale}); 
             top: calc(69% - #{250px * $scale});
+            z-index: 0;
+        }
+    }
+    .skip{
+        position: absolute;
+        bottom: 0%;
+        left: calc(50% - 140px);
+        width: 280px;
+        height: 50px;
+        transform: translateY(80px);
+        .border-container{
+            position: absolute;
+            top: 0%;
+            height: 100%;
+            width: 50%;
+            overflow: hidden;
+            pointer-events: none;
+            .border{
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                top: 0;
+                background: rgba(0, 0, 0, 0.9);
+                transform: skewX(45deg);
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+        }
+        .border-left-container{
+            left: 0;
+            .border{
+                left: 10%;
+                transform: skewX(-30deg);
+            }
+        }
+        .border-right-container{
+            left: 50%;
+            .border{
+                left: -10%;
+                transform: skewX(30deg);
+            }
+        }
+        .text-box{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 14px;
+            text-align: center;
+            color: #fff;
+            vertical-align: middle;
+            line-height: 60px;
+            opacity: 0;
+            .dot{
+                opacity: 0;
+            }
+        }
+        .scroll-icon{
+            $size: 30px;
+            position: absolute;
+            left: calc(50% - #{$size * 0.3} - 1px);
+            top: -$size * 0.6;
+            width: $size * 0.6;
+            height: $size;
+            border-radius: $size * 0.3;
+            background: #111;
+            border: 1px solid #0099ff;
+            box-shadow: 0px 0px 0px 2px #111;
+            transform: scale(0);
+            // opacity: 0.9;
+            .scroll-overflow{
+                position: absolute;
+                left: ($size * 0.3) - 1px;
+                top: $size / 10;
+                width: 2px;
+                height: $size / 3;
+                overflow: hidden;
+            }
+            .scroll-line{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 80%;
+                background: #0099ff;
+                animation-name: scrollLine;
+                animation-duration: 1s;
+                animation-iteration-count: infinite;
+                @keyframes scrollLine {
+                    0% {
+                        transform: translateY(-100%);
+                    }
+                    100%{
+                        transform: translateY(150%);
+                    }
+                }
+            }
         }
     }
 }

@@ -6,8 +6,10 @@ class Skills {
     // == Setings ==
     this.animationTime = 0.35;
     this.showTimeoutTime = 100;
+    this.introTime = 0.7;
 
     // == Elements ==
+    this.skills = document.querySelectorAll('#skills .skill-box');
     this.logoBoxes = document.querySelectorAll('#skills .skill-logo-box');
     this.descBox = document.querySelectorAll('#skills .desc-box');
     this.skillLogo = document.querySelectorAll('#skills .skill-logo-box .skill-logo');
@@ -15,6 +17,7 @@ class Skills {
     this.showAllBtn = document.querySelector('#skills .show-all-btn');
 
     // == Variables ==
+    this.windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     this.boxInFirstRow = document.querySelectorAll('#skills .flex-box-top .skill-logo-box').length;
     this.descriptionOpenedArray = [];
     this.isShowedAll = false;
@@ -23,7 +26,7 @@ class Skills {
       this.descriptionOpenedArray[i] = false;
     }
     this.showTimeout = null;
-    this.animationOrderArray = [0, 5, 1, 6, 2, 7, 3, 8, 4, 9];
+    this.animationOrderArray = [0, 5, 1, 6, 2, 7, 3, 8, 4];
   }
   addEventListeners() {
     for (let i = 0; i < this.logoBoxes.length; i++) {
@@ -113,8 +116,31 @@ class Skills {
     }
     this.showAll();
   }
+  intro() {
+    console.log('skills intro1');
+    TweenMax.to(this.skills[0], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0 });
+    TweenMax.to(this.skills[5], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0.1 });
+    TweenMax.to(this.skills[1], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0.2 });
+    TweenMax.to(this.skills[6], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0.3 });
+    TweenMax.to(this.skills[2], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0.4 });
+    TweenMax.to(this.skills[7], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0.5 });
+    TweenMax.to(this.skills[3], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0.6 });
+    TweenMax.to(this.skills[8], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0.7 });
+    TweenMax.to(this.skills[4], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0.8 });
+
+  }
 
   init() {
+    TweenMax.set(this.skills[0], { x: -this.windowWidth * 0.7, y: -400 });
+    TweenMax.set(this.skills[1], { x: -this.windowWidth * 0.7, y: -200 });
+    TweenMax.set(this.skills[2], { x: -this.windowWidth * 0.7, y: 0 });
+    TweenMax.set(this.skills[5], { x: -this.windowWidth * 0.7, y: 200 });
+    TweenMax.set(this.skills[6], { x: -this.windowWidth * 0.7, y: 400 });
+
+    TweenMax.set(this.skills[3], { x: this.windowWidth * 0.7, y: -300 });
+    TweenMax.set(this.skills[4], { x: this.windowWidth * 0.7, y: -100 });
+    TweenMax.set(this.skills[7], { x: this.windowWidth * 0.7, y: 100 });
+    TweenMax.set(this.skills[8], { x: this.windowWidth * 0.7, y: 300 });
     this.addEventListeners();
   }
 }

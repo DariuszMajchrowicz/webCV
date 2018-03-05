@@ -38,8 +38,8 @@
     pointer-events: none;
     position: absolute;
     left: 50%;
-    width: 250px;
-    height: 150px;
+    width: 200px;
+    height: 120px;
     background: rgba(255, 255, 255, 0.7);
     border-radius: 5px;
     box-shadow: 0px 0px 30px 0px;
@@ -52,10 +52,12 @@
       width: 100%;
       text-align: center;
       border-bottom: 1px solid rgba(0, 0, 0, 0.7);
+      font-size: 16px;
     }
     .desc-body{
       width: 100%;
       padding: 7px 5px 0 5px;
+      font-size: 14px;
     }
   }
   .skill-box {
@@ -65,17 +67,17 @@
       margin: 0 auto;
       box-shadow: 0px 0px 30px 0px;
       position: relative;
-      width: 120px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       background: #fff;
       cursor: pointer;
       .skill-logo {
         position: absolute;
-        width: 90%;
+        width: 84%;
         height: auto;
-        left: 5%;
-        top: 5%;
+        left: 8%;
+        top: 8%;
         opacity: 0.6;
         transform: scale(0.8);
         filter: grayscale(100%);
@@ -85,7 +87,7 @@
   .show-all-btn{
     cursor: pointer;
     position: absolute;
-    bottom: 20px;
+    top: calc(50% + 215px);
     right: 10px;
     width: 125px;
     height: 50px;
