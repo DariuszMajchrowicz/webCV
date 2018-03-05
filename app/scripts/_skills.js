@@ -123,12 +123,18 @@ class Skills {
     TweenMax.to(this.skills[1], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0.2 });
     TweenMax.to(this.skills[6], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0.3 });
     TweenMax.to(this.skills[2], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0.4 });
-    TweenMax.to(this.skills[7], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0.5 });
     TweenMax.to(this.skills[3], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0.6 });
     TweenMax.to(this.skills[8], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0.7 });
     TweenMax.to(this.skills[4], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0.8 });
-
-  }
+    
+    TweenMax.to(this.skills[7], this.introTime, { x: '-100%', y: '-200%', ease: Back.easeOut.config(1), delay: 0.5 });
+    TweenMax.to(this.skills[7], 0.1, { x: -10, ease: Back.easeOut.config(5), delay: 0.5 + this.introTime, yoyo: true, repeat: 3 });
+    TweenMax.to(this.skills[8], this.introTime / 2, { x: '-150%', y: '-180%', ease: Back.easeOut.config(1), delay: 0.7 + this.introTime, onComplete: ()=>{
+      TweenMax.to(this.skills[8], this.introTime, { x: '0%', y: '0%', ease: Back.easeOut.config(1) });
+      TweenMax.to(this.skills[7], this.introTime, { x: '0%', y: '0%', ease: Back.easeOut.config(1), delay: 0.2 });
+    } });
+  
+  } 
 
   init() {
     TweenMax.set(this.skills[0], { x: -this.windowWidth * 0.7, y: -400 });
