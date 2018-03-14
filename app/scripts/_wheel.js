@@ -160,16 +160,23 @@ class Wheel {
 
     TweenMax.fromTo(this.outerCircle, this.introTime * 0.9, { rotation: -60 }, { rotation: -360 });
     TweenMax.to(this.fullWheel, this.introTime, { x: 0, ease: Back.easeOut.config(0.7)});
-    setTimeout(()=>{
-      TweenMax.set(this.outerCircle, { rotation: 360 });
-      this.circleRotate(0);
-      this.addEventListeners();
-    }, this.introTime * 0.9 * 1000)
-    
+    // setTimeout(()=>{
+    //   TweenMax.set(this.outerCircle, { rotation: 360 });
+    //   this.circleRotate(0);
+    //   this.addEventListeners();
+    // }, this.introTime * 0.9 * 1000)
+  }
+
+  resizeCorrection(){
+
+
   }
 
 
   init() {
     TweenMax.set(this.fullWheel, { x: this.windowWidth});
+    this.circleRotate(0);
+    this.addEventListeners();
+
   }
 }

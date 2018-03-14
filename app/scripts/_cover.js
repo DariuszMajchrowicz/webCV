@@ -168,7 +168,7 @@ class Cover {
             
         // this.introTimeline.timeScale(0.4);
         // this.introTimeline.timeScale(5);
-        // this.introTimeline.progress(1);
+        this.introTimeline.progress(1);
         }
 
     outro(callback) {
@@ -197,6 +197,7 @@ class Cover {
         TweenMax.to(this.coverBg, this.animationPartialsTime * 2, { y: -120 + '%'});
         setTimeout(()=>{
             window.coverStage = false;
+            TweenMax.set(this.cover, { autoAlpha: 0 });
             if (callback) { callback(); }
         }, 300)
 

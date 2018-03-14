@@ -18,6 +18,7 @@ class Skills {
 
     // == Variables ==
     this.windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    this.windowSize = this.windowWidth < 1250 ? 'mobile' : 'desktop';
     this.boxInFirstRow = document.querySelectorAll('#skills .flex-box-top .skill-logo-box').length;
     this.descriptionOpenedArray = [];
     this.isShowedAll = false;
@@ -27,6 +28,7 @@ class Skills {
     }
     this.showTimeout = null;
     this.animationOrderArray = [0, 5, 1, 6, 2, 7, 3, 8, 4];
+
   }
   addEventListeners() {
     for (let i = 0; i < this.logoBoxes.length; i++) {
@@ -39,23 +41,34 @@ class Skills {
 
   showDescription(_boxNumber) {
     let verticalTranslation = (_boxNumber >= this.boxInFirstRow ? '120%' : '-120%');
+    let horizontalTranslation = '-50%';
+    if ( this.windowWidth < 1250 ) {
+      verticalTranslation = '-15%';
+      horizontalTranslation = '20%';
+    }
   
     TweenMax.to(this.skillLogo[_boxNumber], this.animationTime, { scale: 1, opacity: 1 });
     this.skillLogo[_boxNumber].style.transition = 'filter ' + this.animationTime + 's';
     this.skillLogo[_boxNumber].style.filter = 'none';
 
-    TweenMax.to(this.descBox[_boxNumber], this.animationTime, { y: verticalTranslation, opacity: 1, delay: this.animationTime/3 });
+    TweenMax.to(this.descBox[_boxNumber], this.animationTime, { y: verticalTranslation, x: horizontalTranslation, opacity: 1, delay: this.animationTime/3 });
   }
 
   hideDescription(_boxNumber) {
     if ( this.descriptionOpenedArray[_boxNumber] ) { return; }
+    if ( this.windowSize == 'mobile') { return; }
     
     let verticalTranslation = (_boxNumber >= this.boxInFirstRow ? '50%' : '-50%');
+    let horizontalTranslation = '-50%';
+    if (this.windowWidth < 1250) {
+      verticalTranslation = '-15%';
+      horizontalTranslation = '-75%';
+    }
     
     TweenMax.to(this.skillLogo[_boxNumber], this.animationTime, { scale: 0.8, opacity: 0.6 });
     this.skillLogo[_boxNumber].style.filter = 'grayscale(100%)';
     
-    TweenMax.to(this.descBox[_boxNumber], this.animationTime, { y: verticalTranslation, opacity: 0, delay: this.animationTime / 3 });
+    TweenMax.to(this.descBox[_boxNumber], this.animationTime, { y: verticalTranslation, x: horizontalTranslation, opacity: 0, delay: this.animationTime / 3 });
   }
   
   toggleDescription(_boxNumber) {
@@ -131,10 +144,24 @@ class Skills {
     TweenMax.to(this.skills[7], 0.1, { x: -10, ease: Back.easeOut.config(5), delay: 0.5 + this.introTime, yoyo: true, repeat: 3 });
     TweenMax.to(this.skills[8], this.introTime / 2, { x: '-150%', y: '-180%', ease: Back.easeOut.config(1), delay: 0.7 + this.introTime, onComplete: ()=>{
       TweenMax.to(this.skills[8], this.introTime / 3, { x: '0%', y: '0%', ease: Back.easeOut.config(1) });
-      TweenMax.to(this.skills[7], this.introTime / 3, { x: '0%', y: '0%', ease: Back.easeOut.config(1), delay: 0.1 });
+      TweenMax.to(this.skills[7], this.introTime / 3, { x: '0%', y: '0%', ease: Back.easeOut.config(1), delay: 0.1,});
+      if ( this.windowSize == 'mobile' ) { this.showAll(); }
     } });
-  
   } 
+
+  resizeCorrection() {
+    window.addEventListener('resize', ()=>{
+      this.windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+      this.windowSize = this.windowWidth < 1250 ? 'mobile' : 'desktop';
+      this.isShowedAll = true;
+      this.showAll();
+      setTimeout(()=>{
+        this.isShowedAll = false;
+        this.showAll();
+      }, 1000);
+    });
+  }
+
 
   init() {
     TweenMax.set(this.skills[0], { x: -this.windowWidth * 0.7, y: -400 });
@@ -148,5 +175,6 @@ class Skills {
     TweenMax.set(this.skills[7], { x: this.windowWidth * 0.7, y: 100 });
     TweenMax.set(this.skills[8], { x: this.windowWidth * 0.7, y: 300 });
     this.addEventListeners();
+    this.resizeCorrection();
   }
 }

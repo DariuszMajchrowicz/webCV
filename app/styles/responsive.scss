@@ -1,34 +1,76 @@
 #skills{
-  @media (max-width: 1250px) {
-    $numberOfBoxesInRow: 5;
-    .flex-box{
-        width: 50%;
-        height: 100%;
-        flex-direction: column;
-        align-items: flex-start;
-        padding-left: 20px; 
-        
+    @media (max-width: 1250px) {
+        $numberOfBoxesInRow: 5;
+        min-height: 800px;
+        .flex-box{
+            padding: 40px 0 40px 20px;
+            width: 50%;
+            height: 100%;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 20px; 
+            justify-content: flex-start;
+            
+        }
+        .flex-box-top{ 
+            top: 0; 
+            left: 0;
+        }
+        .flex-box-bottom{ 
+            top: 0;
+            left: 50%;
+        }
+        .skill-box {
+            height: 100% / $numberOfBoxesInRow;
+            width: auto;
+        }
+        .flex-box-bottom .desc-box, .flex-box-top .desc-box {
+            bottom: auto;
+            top: 0;
+            left:  100%;
+            transform: translate(-75%, -15%); 
+        }
+        .show-all-btn{
+            display: none;
+        }
     }
-    .flex-box-top{ 
-        top: 0; 
-        left: 0;
-        // background: red;
-        opacity: 0.5;
+    @media (max-width: 800px) {
+        min-height: 1400px;
+        .flex-box{
+            width: 100%;
+            flex-direction: column;
+            align-items: flex-start;
+            
+        }
+        .flex-box-top{ 
+            height: 55.55%;
+            padding: 30px 0 0px 0;
+            top: 0; 
+            left: 0;
+            justify-content: flex-end;
+        }
+        .flex-box-bottom{ 
+            height: 44.46%;
+            padding: 0;
+            top: calc(55.5% + 30px);
+            left: 0%;
+            justify-content: flex-start;
+            .skill-box{
+                height: 25%;
+            }
+        }
+        .skill-box{
+            margin-left: calc(50% - 182px);
+        }
     }
-    .flex-box-bottom{ 
-        top: 0;
-        left: 50%;
-        // background: green;
-        opacity: 0.5;
+}
+
+#boxes{
+    @media (max-width: 800px) {
+        min-height: 1100px;
+        .flex-box{
+            justify-content: center;
+            align-items: center;
+        }
     }
-    .skill-box {
-        height: 100% / $numberOfBoxesInRow;
-        width: auto;
-    }
-    .desc-box {
-        top: 50%;
-        left:  100%;
-        transform: translate(50%, -50%); 
-    }
-  }
 }
