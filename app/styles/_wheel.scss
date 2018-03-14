@@ -6,7 +6,7 @@
   $easeTime : 0.35s;
   $mainCircleSize: 550px;
   $innerCircleSize: $mainCircleSize * 0.35;
-  $numbersOfWheelCircles : 6;
+  $numbersOfWheelCircles :6;
   $wheelCircleSize: ($mainCircleSize - $innerCircleSize) / 2;
   
   height: 100vh;

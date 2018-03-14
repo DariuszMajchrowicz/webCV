@@ -22,7 +22,6 @@ section{
   top: 50%;
   width: 110%;
   overflow: hidden;
-  color: rgba(0, 0, 0, 0.1);
   font-weight: 900;
   font-size: 70vh;
   left: -10%;
@@ -31,6 +30,8 @@ section{
   transform: translate(0%, -50%);
   pointer-events: none;
   user-select: none;
+  color: rgba(0, 0, 0, 0.2);
+  // -webkit-text-stroke: 3px rgba(255, 255, 255, 0.2);
 }
 
 @import "__trigonometry.scss";

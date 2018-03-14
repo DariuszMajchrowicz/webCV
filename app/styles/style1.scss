@@ -1,18 +1,17 @@
-.style{
-    #cover{
-        .circle, .box, .wheel{
-            border: 1px solid #1f4c8a;
-            background: rgba(49, 168, 206, 0.5);
-            box-shadow: 10px 10px 30px 0px #000000;
+.style1{
+    background: url("../images/k.png") 100% 50%, linear-gradient(135deg, #006187, #03283a);
+    #skills {
+        .skill-box .skill-logo-box{
+            box-shadow: 0px 0px 20px 0px #333;
+            background: linear-gradient(135deg, #ffffff, #96f5fb);
+
+            // box-shadow: 0px 0px 20px 0px #46f1fc;
+            // background: linear-gradient(135deg, #ffffff, #96f5fb);
         }
-        .box{
-            background: linear-gradient(141deg, #a4d4e4, rgba(0, 119, 255, 0.43));
-        }
-        .circle {
-            background: linear-gradient(141deg, #a4d4e4, rgba(6, 130, 139, 0.43));
-        }
-        .wheel{
-            background: linear-gradient(141deg, #a4d4e4, rgba(6, 139, 28, 0.43));
+    }
+    #footer {
+        .circle-ornament {
+            background:  url("../images/k.png") 100% 50%, #03354c;
         }
     }
 }
