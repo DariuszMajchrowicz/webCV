@@ -66,7 +66,7 @@
 }
 
 #boxes{
-    @media (max-width: 800px) {
+    @media (max-width: 850px) {
         min-height: 1100px;
         .flex-box{
             justify-content: center;
@@ -74,3 +74,93 @@
         }
     }
 }
+
+#wheel{
+  @media (max-width: 1250px) { 
+      $mainCircleSize: 400px; 
+      $innerCircleSize: $mainCircleSize * 0.35;
+      $wheelCircleSize: ($mainCircleSize - $innerCircleSize) / 2;
+      $numbersOfWheelCircles : 6;  
+      .flex-container{
+          width: 2* $mainCircleSize;
+          height: $mainCircleSize;
+        }
+        @mixin wheelCircle($numb, $color) {
+            $angle: ($numb - 2)  * (360deg / $numbersOfWheelCircles);
+            $r : $mainCircleSize /2;
+            $rI : $wheelCircleSize/2;
+            left: (sin($angle) * $r) + $r - $rI - $rI * sin($angle);
+            top: (cos($angle) * $r) + $r - $rI - $rI * cos($angle);
+            background-color: $color;
+        }
+  @mixin iconCorrection($numb){
+      $angle: 330deg - ($numb * 360deg / $numbersOfWheelCircles); 
+    transform: rotate($angle);
+}
+
+.box-container{
+    width: $mainCircleSize * 1.5;
+    height: $mainCircleSize;
+    .box {
+        width: $mainCircleSize * 1.5;
+        height: $mainCircleSize * 0.9;
+        top: $mainCircleSize * 0.05;
+    }
+    .inner-box{
+        h1 {
+          text-align: center;
+        }
+        p {
+          padding: 10px;
+          font-size: 18px;
+          text-align: left;
+        }
+    }
+}
+.main-circle{
+    width: $mainCircleSize;
+    height: $mainCircleSize;
+}
+.inner-circle{
+    width: $innerCircleSize;
+    height: $innerCircleSize;
+    i, span{
+        font-size: 50px;
+    }
+}
+.outer-circle{
+    .wheel-circle{
+        width: $wheelCircleSize;
+      height: $wheelCircleSize;
+      i, p {
+        font-size: 50px;
+    }
+}
+.circle1 { @include wheelCircle(0.5, rgba(0, 0, 0, 0.32)); }
+.circle2 { @include wheelCircle(1.5, rgba(0, 0, 0, 0.30)); }
+.circle3 { @include wheelCircle(2.5, rgba(0, 0, 0, 0.35)); }
+.circle4 { @include wheelCircle(3.5, rgba(0, 0, 0, 0.25)); }
+.circle5 { @include wheelCircle(4.5, rgba(0, 0, 0, 0.27)); }
+.circle6 { @include wheelCircle(5.5, rgba(0, 0, 0, 0.40)); }
+
+.circle1 i, .circle1 p {@include iconCorrection(1)};
+.circle2 i, .circle2 p {@include iconCorrection(2)};
+.circle3 i, .circle3 p {@include iconCorrection(3)};
+.circle4 i, .circle4 p {@include iconCorrection(4)};
+.circle5 i, .circle5 p {@include iconCorrection(5)};
+.circle6 i, .circle6 p {@include iconCorrection(6)};
+    }
+    }  
+    @media (max-width: 850px) {
+        min-height: 800px;        
+        .full-wheel{
+            transform: rotate(-90deg);
+        .box-container .inner-box{
+            transform: rotate(90deg);
+        }
+        }
+    }
+
+
+}
+
