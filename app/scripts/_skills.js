@@ -9,6 +9,7 @@ class Skills {
     this.introTime = 0.7;
 
     // == Elements ==
+    this.skillsSection = document.querySelector('#skills');
     this.skills = document.querySelectorAll('#skills .skill-box');
     this.logoBoxes = document.querySelectorAll('#skills .skill-logo-box');
     this.descBox = document.querySelectorAll('#skills .desc-box');
@@ -18,6 +19,8 @@ class Skills {
 
     // == Variables ==
     this.windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    this.windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    
     this.windowSize = this.windowWidth < 1250 ? 'mobile' : 'desktop';
     this.boxInFirstRow = document.querySelectorAll('#skills .flex-box-top .skill-logo-box').length;
     this.descriptionOpenedArray = [];
@@ -50,6 +53,7 @@ class Skills {
     TweenMax.to(this.skillLogo[_boxNumber], this.animationTime, { scale: 1, opacity: 1 });
     this.skillLogo[_boxNumber].style.transition = 'filter ' + this.animationTime + 's';
     this.skillLogo[_boxNumber].style.filter = 'none';
+    this.logoBoxes[_boxNumber].classList.add('active');
 
     TweenMax.to(this.descBox[_boxNumber], this.animationTime, { y: verticalTranslation, x: horizontalTranslation, opacity: 1, delay: this.animationTime/3 });
   }
@@ -67,6 +71,8 @@ class Skills {
     
     TweenMax.to(this.skillLogo[_boxNumber], this.animationTime, { scale: 0.8, opacity: 0.6 });
     this.skillLogo[_boxNumber].style.filter = 'grayscale(100%)';
+    this.logoBoxes[_boxNumber].classList.remove('active');
+    
     
     TweenMax.to(this.descBox[_boxNumber], this.animationTime, { y: verticalTranslation, x: horizontalTranslation, opacity: 0, delay: this.animationTime / 3 });
   }
@@ -130,7 +136,6 @@ class Skills {
     this.showAll();
   }
   intro() {
-    console.log('skills intro1');
     TweenMax.to(this.skills[0], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0 });
     TweenMax.to(this.skills[5], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0.1 });
     TweenMax.to(this.skills[1], this.introTime, { x: 0, y: 0, ease: Back.easeOut.config(1), delay: 0.2 });
@@ -147,7 +152,28 @@ class Skills {
       TweenMax.to(this.skills[7], this.introTime / 3, { x: '0%', y: '0%', ease: Back.easeOut.config(1), delay: 0.1,});
       if ( this.windowSize == 'mobile' ) { this.showAll(); }
     } });
-  } 
+  }
+
+  paralaxOne(numb){
+    this.skillsSection.addEventListener('mousemove', (event)=>{
+
+      let x = (event.clientX - this.logoBoxes[numb].getBoundingClientRect().left - 50) / this.windowWidth;
+      let y = (event.clientY - this.logoBoxes[numb].getBoundingClientRect().top - 50) / this.windowHeight;
+
+      if(numb == 0) {
+        console.log(x, y);
+      }
+      x = x * 30;
+      y = -y * 30;
+      TweenMax.to(this.logoBoxes[numb], 0.1, { rotationY: x + 'deg', rotationX: y + 'deg'})
+      TweenMax.to(this.skillLogo[numb], 0.1, { rotationY: x + 'deg', rotationX: y + 'deg', x: x, y: -y })
+    })
+  }
+  paralax(){
+    for (let i = 0; i < this.logoBoxes.length; i++) {
+      this.paralaxOne(i);
+    }
+  }
 
   resizeCorrection() {
     window.addEventListener('resize', ()=>{
@@ -162,19 +188,23 @@ class Skills {
     });
   }
 
-
-  init() {
+  setPositionBeforeIntro() {
     TweenMax.set(this.skills[0], { x: -this.windowWidth * 0.7, y: -400 });
     TweenMax.set(this.skills[1], { x: -this.windowWidth * 0.7, y: -200 });
     TweenMax.set(this.skills[2], { x: -this.windowWidth * 0.7, y: 0 });
     TweenMax.set(this.skills[5], { x: -this.windowWidth * 0.7, y: 200 });
     TweenMax.set(this.skills[6], { x: -this.windowWidth * 0.7, y: 400 });
-
+  
     TweenMax.set(this.skills[3], { x: this.windowWidth * 0.7, y: -300 });
     TweenMax.set(this.skills[4], { x: this.windowWidth * 0.7, y: -100 });
     TweenMax.set(this.skills[7], { x: this.windowWidth * 0.7, y: 100 });
     TweenMax.set(this.skills[8], { x: this.windowWidth * 0.7, y: 300 });
+  }
+
+
+  init() {
     this.addEventListeners();
     this.resizeCorrection();
+    this.paralax();
   }
 }

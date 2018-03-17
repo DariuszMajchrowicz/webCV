@@ -6,7 +6,6 @@
   margin-bottom: 0;
   overflow: hidden;
   pointer-events: none;
-  //   background: linear-gradient(155deg, #000000 0%, #131313 51%, #000000);
   z-index: 1;
   .bg{
       position: absolute;
@@ -21,11 +20,6 @@
         left: 0;
         color: rgba(255, 255, 255, 0.05);
         font-size: 65vh;
-        // text-shadow:
-        //     -5px -5px 0 #000,
-        //     5px -5px 0 #000,
-        //     -5px 5px 0 #000,
-        //     5px 5px 0 #000;
     }
     .code-main-block{
         position: absolute;

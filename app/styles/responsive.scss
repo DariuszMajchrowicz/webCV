@@ -89,13 +89,14 @@
             $angle: ($numb - 2)  * (360deg / $numbersOfWheelCircles);
             $r : $mainCircleSize /2;
             $rI : $wheelCircleSize/2;
-            left: (sin($angle) * $r) + $r - $rI - $rI * sin($angle);
-            top: (cos($angle) * $r) + $r - $rI - $rI * cos($angle);
+            // TO:DO
+            // left: (sin($angle) * $r) + $r - $rI - $rI * sin($angle);
+            // top: (cos($angle) * $r) + $r - $rI - $rI * cos($angle);
             background-color: $color;
         }
   @mixin iconCorrection($numb){
       $angle: 330deg - ($numb * 360deg / $numbersOfWheelCircles); 
-    transform: rotate($angle);
+      transform: rotate($angle);
 }
 
 .box-container{

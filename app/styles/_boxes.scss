@@ -4,31 +4,59 @@
   width: 100%;
   height: 100vh;
   min-height: 600px;  
+  perspective: 2500px;
 
   $boxWidth : 400px;
   $boxHeight : 250px;
   $fontSize : 100px;
+  $boxNumbers : 5;
   
-  .flex-box {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
+  // .flex-box {
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   display: flex;
+  //   justify-content: center;
+  //   flex-flow: row wrap;
+  //   width: 100%;
+  //   height: 50%;
+  //   .box {position: relative;}
+  // }
+  // .flex-box-top{ 
+  //   top: 0; 
+  //   align-items: flex-end; 
+  // }
+  // .flex-box-bottom{ 
+  //   top: 50%;
+  //   align-items: flex-start; 
+  // }
+
+  .carousel-3d{
     width: 100%;
-    height: 50%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    .box{
+      display: block;
+      position: absolute;
+      left: calc(50% - #{$boxWidth / 2});
+      top: calc(50% - #{$boxHeight / 2});
+      backface-visibility: visible;
+      transition-duration: 10s;
+    }
+    @for $i from 1 through ($boxNumbers) {
+        $roration : (360deg/$boxNumbers) * ($i - 1);
+        $zTranslation :  ($boxWidth / 2) / tan(40deg);
+        $zTranslation : 500px;
+
+        .box#{$i} { 
+            transform: rotateY( $roration ) translateZ( $zTranslation );
+        }
+    }
   }
-  .flex-box-top{ 
-    top: 0; 
-    align-items: flex-end; 
-  }
-  .flex-box-bottom{ 
-    top: 50%;
-    align-items: flex-start; 
-  }
+
   .box{
-    position: relative;
+    // position: relative;
     width: $boxWidth;
     height: $boxHeight;
     margin: 10px;

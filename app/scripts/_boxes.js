@@ -6,6 +6,12 @@ class Boxes {
     // == Setings ==
     this.animationTime = 0.5;
     this.introTime = 1;
+    this.numberOfBoxes = 5;
+    this.rotationArray = [];
+
+    for (let i = 0; i < this.numberOfBoxes; i++) {
+      this.rotationArray[i] = (360 / this.numberOfBoxes) * (i);
+    }
 
     // == Variables ==
     this.openedBoxArray = [];
@@ -83,12 +89,28 @@ class Boxes {
 
   }
 
-  init() {
-    this.addEventListeners();
+  setPositionBeforeIntro() {
     TweenMax.set(this.boxes[0], { x: -this.windowWidth * 0.5, y: '-30%' });
     TweenMax.set(this.boxes[1], { x: this.windowWidth * 0.5, y: '-30%' });
     TweenMax.set(this.boxes[2], { x: -this.windowWidth * 0.5, y: '30%' });
     TweenMax.set(this.boxes[3], { x: this.windowWidth * 0.5, y: '30%' });
-    
+  }
+
+  rotateCarousel(translatonAngle){
+    console.log('one');
+    console.log(this.rotationArray);
+    for (let i = 0; i < this.rotationArray.length; i++) {
+      this.rotationArray[i] = this.rotationArray[i] + translatonAngle;
+      this.boxes[i].style.transform = 'rotateY( ' + this.rotationArray[i] + 'deg ) translateZ( 500px )';
+    }
+    console.log(this.rotationArray);
+    // TweenMax.to(this.boxes, 15, { rotationY: '720' });
+  }
+
+  init() {
+    this.addEventListeners();
+    setTimeout(()=>{
+      this.rotateCarousel(1440);
+    }, 3000);
   }
 }

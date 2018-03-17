@@ -1,17 +1,30 @@
 .style1{
     background: url("../images/k.png") 100% 50%, linear-gradient(135deg, #006187, #03283a);
+    #cover{
+        .bg{
+            background: url("../images/k.png") 100% 50%, #1d1d1d;
+        }
+    }
     #skills {
-        .skill-box .skill-logo-box{
-            box-shadow: 0px 0px 20px 0px #333;
-            background: linear-gradient(135deg, #ffffff, #96f5fb);
-
-            // box-shadow: 0px 0px 20px 0px #46f1fc;
-            // background: linear-gradient(135deg, #ffffff, #96f5fb);
+        .skill-box {
+            
+            .skill-logo-box{
+                backface-visibility: visible;
+                transform: perspective(75px);
+                background:  radial-gradient(circle, #ffffff, #7ed8df);
+                transition: background 0.35s, box-shadow 0.35s; 
+                &.active{
+                    background:  radial-gradient(circle, #ffffff, #46f1fc);
+                    box-shadow: 0px 0px 20px 3px #46f1fc;
+                }
+                
+                
+            }
         }
     }
     #footer {
         .circle-ornament {
-            background:  url("../images/k.png") 100% 50%, #03354c;
+            background:  url("../images/k.png") 97.5% 48%, #03354c;
         }
     }
 }
