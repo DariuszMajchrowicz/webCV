@@ -4,6 +4,7 @@ console.log('Boxes is loaded');
 class Boxes {
   constructor() {
     // == Setings ==
+    this.carouselTime = 5000;
     this.animationTime = 0.5;
     this.introTime = 1;
     this.numberOfBoxes = 5;
@@ -14,6 +15,9 @@ class Boxes {
     }
 
     // == Variables ==
+    this.carouselCanPlay = true;
+    this.carouselTimeout = null;
+    this.currentBox = 0;
     this.openedBoxArray = [];
     this.windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     this.windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
@@ -30,6 +34,13 @@ class Boxes {
 
     this.mainTitles = document.querySelectorAll('#boxes .box .main-title');
     this.closeBtns = document.querySelectorAll('#boxes .box .close-box-btn');
+
+    this.prevBtn = document.querySelector('#boxes .perv-btn');
+    this.nextBtn = document.querySelector('#boxes .next-btn');
+    this.stopPlayBtn = document.querySelector('#boxes .stop-play-btn');
+    this.progressBar = document.querySelector('#boxes .progess-bar');
+
+    this.boxBtns = document.querySelectorAll('#boxes .box-btns-container .box-btn');
   }
 
   addEventListeners() {
@@ -42,6 +53,26 @@ class Boxes {
         this.closeBox(i); 
       });
     }
+
+    this.stopPlayBtn.addEventListener('mousedown', ()=>{
+      clearTimeout(this.carouselTimeout);
+      this.stopPlayCarousel();
+    })
+    this.nextBtn.addEventListener('mousedown', () => {
+      this.rotateCarousel(1);
+    })
+    this.prevBtn.addEventListener('mousedown', () => {
+      this.rotateCarousel(-1);
+    })
+
+    for (let i = 0; i < this.boxBtns.length; i++) {
+      this.boxBtns[i].addEventListener('mousedown', () => {
+        
+        // let x = i - this.currentBox;
+        this.rotateCarousel(1, i, true);
+      })
+    }
+
   }
 
   openBox(_boxNumber) {
@@ -96,21 +127,47 @@ class Boxes {
     TweenMax.set(this.boxes[3], { x: this.windowWidth * 0.5, y: '30%' });
   }
 
-  rotateCarousel(translatonAngle){
-    console.log('one');
-    console.log(this.rotationArray);
+  rotateCarousel(numb, numb2, flag){
+    clearTimeout(this.carouselTimeout);
+    if (flag) { numb = numb2 - this.currentBox; }
+    console.log(numb, this.currentBox);
+    
+    let translatonAngle = -(360 / this.numberOfBoxes) * numb;
+    
     for (let i = 0; i < this.rotationArray.length; i++) {
+      this.boxes[i].style.transitionDuration = '1s';
+      
       this.rotationArray[i] = this.rotationArray[i] + translatonAngle;
       this.boxes[i].style.transform = 'rotateY( ' + this.rotationArray[i] + 'deg ) translateZ( 500px )';
     }
-    console.log(this.rotationArray);
-    // TweenMax.to(this.boxes, 15, { rotationY: '720' });
+    
+    this.currentBox = (this.currentBox + numb) % 5;
+    // this.currentBox = (this.currentBox + numb) % this.numberOfBoxes;
+    
+    if (!this.carouselCanPlay) { return; }
+    TweenMax.fromTo(this.progressBar, this.carouselTime / 1000, { width: '0%' }, { width: '100%', ease: Power0.easeNone});
+    
+    this.carouselTimeout = setTimeout(()=>{
+      this.rotateCarousel(1);
+    }, this.carouselTime);
+
+  }
+
+  stopPlayCarousel(){
+    if (this.carouselCanPlay){
+      this.carouselCanPlay = false;
+      this.stopPlayBtn.style.background = 'green';
+      TweenMax.to(this.progressBar, 0.35, { width: '0%' });
+    }
+    else{
+      this.carouselCanPlay = true;
+      this.stopPlayBtn.style.background = 'blue';
+      this.rotateCarousel(0);
+    }
   }
 
   init() {
     this.addEventListeners();
-    setTimeout(()=>{
-      this.rotateCarousel(1440);
-    }, 3000);
+    this.rotateCarousel(0);
   }
 }
