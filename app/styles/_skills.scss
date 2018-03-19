@@ -8,6 +8,14 @@
 
   $numberOfBoxesInRow: 5;
 
+  #skillCanvas{
+    position: absolute;
+    // background: rgba(0, 128, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
   .flex-box {
     position: absolute;
     top: 0;
@@ -61,6 +69,7 @@
     }
   }
   .skill-box {
+    // opacity: 0.3;
     width: 100% / $numberOfBoxesInRow;
     position: relative;
     .skill-logo-box {

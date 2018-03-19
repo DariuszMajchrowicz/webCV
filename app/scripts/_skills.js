@@ -32,7 +32,70 @@ class Skills {
     this.showTimeout = null;
     this.animationOrderArray = [0, 5, 1, 6, 2, 7, 3, 8, 4];
 
+    // ==== Canvas ====
+    this.canvas = document.querySelector('#skills #skillCanvas');
+    this.ctx = this.canvas.getContext('2d');
+    this.boxX = [];
+    this.boxY = [];
+
   }
+
+  drawCanvas(){
+    let xCorrection =  1920 / this.canvas.clientWidth;
+    let yCorrection = 1080 / this.canvas.clientHeight;
+
+    for (let i = 0; i < this.logoBoxes.length; i++) {
+      this.boxX[i] = (this.logoBoxes[i].getBoundingClientRect().left + 50) * xCorrection;
+      this.boxY[i] = (this.logoBoxes[i].getBoundingClientRect().top + 50) * yCorrection;
+    }
+
+    
+    this.skillsSection.addEventListener('mousemove', (event) => {
+      this.ctx.clearRect(0, 0, 1920, 1080);
+      this.drawLinesBetween();
+      this.drawLinesToMouse(event.clientX, event.clientY);
+
+    })
+
+  }
+
+  drawLinesBetween(){
+    this.ctx.strokeStyle = '#fff';
+    this.ctx.lineWidth = 1;
+
+    this.ctx.beginPath();
+    this.ctx.moveTo(0, 400);
+    this.ctx.lineTo(this.boxX[0], this.boxY[0]);
+    this.ctx.lineTo(this.boxX[1], this.boxY[1]);
+    this.ctx.lineTo(this.boxX[5], this.boxY[5]);
+    this.ctx.lineTo(this.boxX[6], this.boxY[6]);
+    this.ctx.lineTo(this.boxX[2], this.boxY[2]);
+    this.ctx.lineTo(this.boxX[7], this.boxY[7]);
+    this.ctx.lineTo(this.boxX[3], this.boxY[3]);
+    this.ctx.lineTo(this.boxX[4], this.boxY[4]);
+    this.ctx.lineTo(this.boxX[8], this.boxY[8]);
+    this.ctx.lineTo(1920, 600);
+    this.ctx.stroke();
+  }
+
+  drawLinesToMouse(x, y) {
+    this.ctx.strokeStyle = '#fff';
+    this.ctx.lineWidth = 0.5;
+
+    let xCorrection = 1920 / this.canvas.clientWidth;
+    let yCorrection = 1080 / this.canvas.clientHeight;
+
+    requestAnimationFrame(()=>{
+      for (let i = 4; i < this.boxX.length; i++) {
+        this.ctx.beginPath();
+        this.ctx.moveTo(x * xCorrection, y * yCorrection);
+        this.ctx.lineTo(this.boxX[i], this.boxY[i]);
+        this.ctx.stroke();
+      }
+    })
+  }
+
+
   addEventListeners() {
     for (let i = 0; i < this.logoBoxes.length; i++) {
       this.logoBoxes[i].addEventListener('mouseover', () => { this.showDescription(i); });
@@ -160,13 +223,11 @@ class Skills {
       let x = (event.clientX - this.logoBoxes[numb].getBoundingClientRect().left - 50) / this.windowWidth;
       let y = (event.clientY - this.logoBoxes[numb].getBoundingClientRect().top - 50) / this.windowHeight;
 
-      if(numb == 0) {
-        console.log(x, y);
-      }
       x = x * 30;
       y = -y * 30;
       TweenMax.to(this.logoBoxes[numb], 0.1, { rotationY: x + 'deg', rotationX: y + 'deg'})
       TweenMax.to(this.skillLogo[numb], 0.1, { rotationY: x + 'deg', rotationX: y + 'deg', x: x, y: -y })
+      TweenMax.to(this.canvas, 0.1, { rotationY: x/2 + 'deg', rotationX: y/2 + 'deg', x: x, y: -y })
     })
   }
   paralax(){
@@ -206,5 +267,6 @@ class Skills {
     this.addEventListeners();
     this.resizeCorrection();
     this.paralax();
+    this.drawCanvas();
   }
 }

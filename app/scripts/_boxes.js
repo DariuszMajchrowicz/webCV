@@ -130,7 +130,6 @@ class Boxes {
   rotateCarousel(numb, numb2, flag){
     clearTimeout(this.carouselTimeout);
     if (flag) { numb = numb2 - this.currentBox; }
-    console.log(numb, this.currentBox);
     
     let translatonAngle = -(360 / this.numberOfBoxes) * numb;
     
