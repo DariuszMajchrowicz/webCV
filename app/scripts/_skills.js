@@ -13,6 +13,7 @@ class Skills {
     this.skills = document.querySelectorAll('#skills .skill-box');
     this.logoBoxes = document.querySelectorAll('#skills .skill-logo-box');
     this.descBox = document.querySelectorAll('#skills .desc-box');
+    this.descLines = document.querySelectorAll('#skills .desc-box .desc-line');
     this.skillLogo = document.querySelectorAll('#skills .skill-logo-box .skill-logo');
     
     this.showAllBtn = document.querySelector('#skills .show-all-btn');
@@ -46,15 +47,16 @@ class Skills {
 
     for (let i = 0; i < this.logoBoxes.length; i++) {
       this.boxX[i] = (this.logoBoxes[i].getBoundingClientRect().left + 50) * xCorrection;
-      this.boxY[i] = (this.logoBoxes[i].getBoundingClientRect().top + 50) * yCorrection;
+      this.boxY[i] = (this.logoBoxes[i].getBoundingClientRect().top - 
+        this.skillsSection.getBoundingClientRect().top  + 50) * yCorrection;
     }
 
     
     this.skillsSection.addEventListener('mousemove', (event) => {
       this.ctx.clearRect(0, 0, 1920, 1080);
       this.drawLinesBetween();
-      this.drawLinesToMouse(event.clientX, event.clientY);
-
+      console.log(event.clientX, event.clientY - this.skillsSection.getBoundingClientRect().top);
+      this.drawLinesToMouse(event.clientX, event.clientY - this.skillsSection.getBoundingClientRect().top);
     })
 
   }
@@ -86,7 +88,7 @@ class Skills {
     let yCorrection = 1080 / this.canvas.clientHeight;
 
     requestAnimationFrame(()=>{
-      for (let i = 4; i < this.boxX.length; i++) {
+      for (let i = 0; i < this.boxX.length; i = i + 2) {
         this.ctx.beginPath();
         this.ctx.moveTo(x * xCorrection, y * yCorrection);
         this.ctx.lineTo(this.boxX[i], this.boxY[i]);
@@ -117,8 +119,9 @@ class Skills {
     this.skillLogo[_boxNumber].style.transition = 'filter ' + this.animationTime + 's';
     this.skillLogo[_boxNumber].style.filter = 'none';
     this.logoBoxes[_boxNumber].classList.add('active');
-
+    
     TweenMax.to(this.descBox[_boxNumber], this.animationTime, { y: verticalTranslation, x: horizontalTranslation, opacity: 1, delay: this.animationTime/3 });
+    TweenMax.to(this.descLines[_boxNumber], this.animationTime / 2, { width: '80%', delay: this.animationTime / 2 });
   }
 
   hideDescription(_boxNumber) {
@@ -136,7 +139,7 @@ class Skills {
     this.skillLogo[_boxNumber].style.filter = 'grayscale(100%)';
     this.logoBoxes[_boxNumber].classList.remove('active');
     
-    
+    TweenMax.to(this.descLines[_boxNumber], this.animationTime / 2, { width: '0%', delay: this.animationTime / 2 });
     TweenMax.to(this.descBox[_boxNumber], this.animationTime, { y: verticalTranslation, x: horizontalTranslation, opacity: 0, delay: this.animationTime / 3 });
   }
   

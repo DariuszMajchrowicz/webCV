@@ -7,7 +7,6 @@
     }
     #skills {
         .skill-box {
-            
             .skill-logo-box{
                 backface-visibility: visible;
                 transform: perspective(75px);
@@ -17,8 +16,35 @@
                     background:  radial-gradient(circle, #ffffff, #46f1fc);
                     box-shadow: 0px 0px 20px 3px #46f1fc;
                 }
-                
-                
+            }
+        }
+        .desc-box{
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            box-shadow: 0px 0px 30px 0px;
+            padding: 10px;
+            box-shadow: 0px 0px 20px 3px #46f1fc;
+                border: 2px solid #46f1fc;
+            .desc-header{
+                padding: 1px 0 10px 0;
+                border: none;
+                font-size: 18px;
+            }
+            .desc-line{
+                background: #46f1fc;
+                width: 0%;
+                margin: 0 10%;
+                height: 2px;
+                border-radius: 1px;
+                position: relative;
+                box-shadow: 0 0 10px #46f1fc;
+            }
+            .desc-body {
+                width: 94%;
+                padding: 13px 0px 8px 0px;
+                font-size: 14px;
+                text-align: center;
+                margin: 0 3%;
             }
         }
     }

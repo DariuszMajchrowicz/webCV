@@ -1,16 +1,16 @@
 <!-- index.html -->
 {% extends "layout.html" %} 
 {% block content %}
-    <div style="display: none">
+    <div style="display: block">
         {% include "partials/cover.html" %}
-        <div id="main-wrapper" style="display: block;">
+        <div id="main-wrapper">
             {% include "partials/about.html" %} 
-            {% include "partials/wheel.html" %}
+            {% include "partials/skills.html" %} 
             {% include "partials/boxes.html" %} 
+            {% include "partials/wheel.html" %}
         </div>
     </div>
     
-    {% include "partials/skills.html" %} 
     {% include "partials/footer.html" %}
     {% include "partials/navigation.html" %}
 {% endblock%}
