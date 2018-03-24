@@ -55,7 +55,6 @@ class Skills {
     this.skillsSection.addEventListener('mousemove', (event) => {
       this.ctx.clearRect(0, 0, 1920, 1080);
       this.drawLinesBetween();
-      console.log(event.clientX, event.clientY - this.skillsSection.getBoundingClientRect().top);
       this.drawLinesToMouse(event.clientX, event.clientY - this.skillsSection.getBoundingClientRect().top);
     })
 
@@ -84,15 +83,18 @@ class Skills {
     this.ctx.strokeStyle = '#fff';
     this.ctx.lineWidth = 0.5;
 
-    let xCorrection = 1920 / this.canvas.clientWidth;
-    let yCorrection = 1080 / this.canvas.clientHeight;
+    let xPosition = x * ( 1920 / this.canvas.clientWidth);
+    let yPosition = y * ( 1080 / this.canvas.clientHeight);
+
 
     requestAnimationFrame(()=>{
       for (let i = 0; i < this.boxX.length; i = i + 2) {
         this.ctx.beginPath();
-        this.ctx.moveTo(x * xCorrection, y * yCorrection);
-        this.ctx.lineTo(this.boxX[i], this.boxY[i]);
+        // this.ctx.moveTo(xPosition, yPosition);
+        this.ctx.moveTo(this.boxX[i], this.boxY[i]);
+        this.ctx.lineTo(xPosition, yPosition);
         this.ctx.stroke();
+        this.ctx.clearRect(xPosition - 10, yPosition - 10, 40, 40);
       }
     })
   }
