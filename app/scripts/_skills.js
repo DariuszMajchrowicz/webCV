@@ -273,5 +273,6 @@ class Skills {
     this.resizeCorrection();
     this.paralax();
     this.drawCanvas();
+    // this.setPositionBeforeIntro();
   }
 }

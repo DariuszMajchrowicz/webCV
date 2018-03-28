@@ -147,8 +147,11 @@
       display: block;
       width: 70px;
       height: 70px;
-      background: blue;
+      // background: blue;
       margin: 0 10px;
+      svg {
+        height: 70px;
+      }
     }
     .progess-bar{
       position: absolute;

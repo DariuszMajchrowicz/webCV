@@ -168,7 +168,7 @@ class Cover {
             
         // this.introTimeline.timeScale(0.4);
         // this.introTimeline.timeScale(5);
-        this.introTimeline.progress(1);
+        // this.introTimeline.progress(1);
         }
 
     outro(callback) {

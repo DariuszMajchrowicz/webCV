@@ -98,17 +98,17 @@ class Navigation {
             this.setProgressLine();
 
             if (!this.introIsLoaded[0] && document.documentElement.scrollTop + this.windowHeight * 0.5 > this.sections[1].offsetTop) { 
-                // this.skills.intro();
+                this.skills.intro();
                 this.introIsLoaded[0] = true;
             }
             
             if (!this.introIsLoaded[1] && document.documentElement.scrollTop + this.windowHeight * 0.5 > this.sections[2].offsetTop) { 
-                // this.boxes.intro();
+                this.boxes.intro();
                 this.introIsLoaded[1] = true;
             }
             
             if (!this.introIsLoaded[2] && document.documentElement.scrollTop + this.windowHeight * 0.5 > this.sections[3].offsetTop) { 
-                // this.wheel.intro();
+                this.wheel.intro();
                 this.introIsLoaded[2] = true;
             }
 
